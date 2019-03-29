@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\P2_EjerciciosClase\\Ej_01_PerCed\\Person.csproj",
+      "projectUniqueName": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\github_Equipo1\\pii_2019_equipo1\\Ej_02_PerCed\\Person.csproj",
       "projectName": "Person",
-      "projectPath": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\P2_EjerciciosClase\\Ej_01_PerCed\\Person.csproj",
+      "projectPath": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\github_Equipo1\\pii_2019_equipo1\\Ej_02_PerCed\\Person.csproj",
       "packagesPath": "C:\\Users\\estudiante.fit\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\P2_EjerciciosClase\\Ej_01_PerCed\\obj\\",
+      "outputPath": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\github_Equipo1\\pii_2019_equipo1\\Ej_02_PerCed\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
