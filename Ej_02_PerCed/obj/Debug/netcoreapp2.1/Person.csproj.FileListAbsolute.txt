@@ -1,0 +1,11 @@
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\obj\Debug\netcoreapp2.1\Person.csprojAssemblyReference.cache
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\obj\Debug\netcoreapp2.1\Person.csproj.CoreCompileInputs.cache
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\obj\Debug\netcoreapp2.1\Person.AssemblyInfoInputs.cache
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\obj\Debug\netcoreapp2.1\Person.AssemblyInfo.cs
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\bin\Debug\netcoreapp2.1\Person.deps.json
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\bin\Debug\netcoreapp2.1\Person.runtimeconfig.json
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\bin\Debug\netcoreapp2.1\Person.runtimeconfig.dev.json
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\bin\Debug\netcoreapp2.1\Person.dll
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\bin\Debug\netcoreapp2.1\Person.pdb
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\obj\Debug\netcoreapp2.1\Person.dll
+C:\Users\estudiante.fit\Desktop\2000ish\2019\UCU\Programacion 2\P2_EjerciciosClase\Ej_01_PerCed\obj\Debug\netcoreapp2.1\Person.pdb
