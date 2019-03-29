@@ -1,5 +1,9 @@
+
 //Ignacio Sica
 //Felipe Perdomo
+//Martín Ayala
+//Valeria Cardozo
+
 
 using System;
 using System.Linq;
