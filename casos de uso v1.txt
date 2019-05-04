@@ -1,0 +1,10 @@
+Casos de uso: que tiene que hacer el programa
+
+Crear, validar y quitar Cliente
+Crear, validar y quitar Tecnico
+Crear y validar y quitar Proyecto
+Vincular proyecto a Tecnico
+Crear Evaluación con carga horaria y descripción y especialización requerida
+Calcular Remuneración
+Crear lista ordenada de tecnicos de acuerdo a distintos criterios
+Terminar proyecto
