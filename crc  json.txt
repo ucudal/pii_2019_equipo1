@@ -1,0 +1,163 @@
+[
+  {
+    name Administrator ,
+    superclasses Person,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Cambiar atributo ApprovedStatus en Users (clase),
+      Cambiar atributo ApprovedStatus en Project (clase),
+      Asignar Technician a Project,
+      Modificar lista de Roles(clase en Technician)
+    ],
+    collaborators [
+      User,
+      Project
+    ]
+  },
+  {
+    name Feedback,
+    superclasses ,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Conocer FeedbackItem (clase),
+      Conocer Score (atributo),
+      Calcular Score del proyecto
+    ],
+    collaborators [
+      FeedbackItem
+    ]
+  },
+  {
+    name FeedbackItem,
+    superclasses ,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Contener Question (atributo),
+      Contener Score (atributo)
+    ],
+    collaborators [
+      Feedback
+    ]
+  },
+  {
+    name Project,
+    superclasses ,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Conocer su HourLoad (atributo),
+      Conocer su Compensation (clase),
+      Conocer su Feedback (clase),
+      Conocer su ApprovedStatus (atributo),
+      Conocer su CompletionStatus (atributo),
+      Conocer su Client (clase),
+      Conocer su lista de Technician (clase),
+      Conocer lista de Role (clase) requeridos
+    ],
+    collaborators [
+      Compensation,
+      Feedback,
+      Client,
+      Technician 
+    ]
+  },
+  {
+    name Compensation,
+    superclasses ,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Conocer TotalCompensation (atributo),
+      Calcular TotalCompensation
+    ],
+    collaborators [
+      Project
+    ]
+  },
+  {
+    name Role,
+    superclasses ,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Conocer Level (atributo),
+      Conocer Description (atributo, ej sonidista) 
+    ],
+    collaborators [
+      Technician
+    ]
+  },
+  {
+    name User,
+    superclasses ,
+    subclasses Person,
+    type 2,
+    responsibilities [
+      Conocer ApprovedStatus (atributo)
+    ],
+    collaborators [
+      Administrator
+    ]
+  },
+  {
+    name Client,
+    superclasses ,
+    subclasses Usuario,
+    type 1,
+    responsibilities [
+      Conocer lista Project (clase),
+      Crear Feedback (clase),
+      Crear Project (clase),
+      Cambiar CompletionStatus (atributo de Project clase)
+    ],
+    collaborators [
+      Project,
+      Feedback
+    ]
+  },
+  {
+    name Technician,
+    superclasses User,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Conocer lista Projects (Clase),
+      Conocer lista Roles (Clase),
+      Conocer PrimaryRole (Role)
+    ],
+    collaborators [
+      
+    ]
+  },
+  {
+    name Ranking,
+    superclasses ,
+    subclasses ,
+    type 1,
+    responsibilities [
+      Conocer lista Technician (clase),
+      Contener lógica de orden de lista Technician
+    ],
+    collaborators [
+      Project,
+      Technician
+    ]
+  },
+  {
+    name Person,
+    superclasses ,
+    subclasses User, Administrator,
+    type 2,
+    responsibilities [
+      Conocer Name (atributo),
+      Conocer LastName (atributo),
+      Conocer MailAddress (atributo)
+    ],
+    collaborators [
+      
+    ]
+  }
+]
