@@ -1,23 +1,23 @@
 Crear, dar de baja y alta Client:
   
-  Se crea objecto Client, que en su constructor lleva Name, LastName y MailAddresss
-  El objecto Adminstartor le envia un mensaje al objeto Client, de que está activado.
+  Se crea objecto Client, que en su constructor lleva Name, LastName y MailAddresss.
+  El objecto Administrator le envia un mensaje al objeto Client, activándolo.
   Administrator también puede desactivar Client por medio de un mensaje.
   El ApprovedStatus en Client permite que aparezca en busquedas y cree Projects.
   
  Crear, dar de baja y alta Technician:
  
   Se crea objecto Technician, que en su constructor lleva Name, LastName, MailAddresss y Roles
-  Anteriormente se crearon objectos Role.
-  El objecto Adminstartor le envia un mensaje al objeto Technician, de que está activado.
+  Anteriormente se crearon objetos Role.
+  El objecto Administrator le envia un mensaje al objeto Technician, activándolo.
   Administrator también puede desactivar Technician por medio de un mensaje.
   El ApprovedStatus en Technician permite que aparezca en busquedas.
   
 Crear, dar de baja y alta Project:
 
-  El objeto Client utiliza el método CreateProject que crea un objeto project.
+  El objeto Client utiliza el método CreateProject que crea un objeto Project.
   El objeto Project en su constructor lleva: HourLoad, Client, Roles requeridos
-  El objeto Administrador envia un mensaje a Project, cambiando el atributo ApprovedStatus
+  El objeto Administrator envia un mensaje a Project, cambiando el atributo ApprovedStatus
   
  Vincular Proyecto a Técnicos:
  
@@ -25,11 +25,11 @@ Crear, dar de baja y alta Project:
  
 Crear Feedback:
 
-  El objecto Client crea un objeto Feedback y se o asigna a Project, una vez que éste úñtimo tenga true en atributo CompletionStatus.
+  El objecto Client crea un objeto Feedback y lo asigna a Project, una vez que éste último tenga true en atributo CompletionStatus.
   
 Calcular Compensation:
 
-  El objeto Project crea el objeto Compensation. El objeto Compensation utiliza atributos de Project para calcular y devolver TotalCompensation.
+  El objeto Project crea el objeto Compensation. El objeto Compensation utiliza atributos en Project para calcular y devolver TotalCompensation.
 
 Crear lista ordenada de tecnicos de acuerdo a distintos criterios:
 
@@ -42,4 +42,4 @@ Terminar Project:
   
 Modificar Roles en Technician:
 
-  El objeto Admin envia un mensaje a el objeto Technician para modificar agregar un Role.
+  El objeto Admin envia un mensaje al objeto Technician para modificar o agregar un Role.
