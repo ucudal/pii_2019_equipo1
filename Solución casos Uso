@@ -1,0 +1,45 @@
+Crear, dar de baja y alta Client:
+  
+  Se crea objecto Client, que en su constructor lleva Name, LastName y MailAddresss
+  El objecto Adminstartor le envia un mensaje al objeto Client, de que está activado.
+  Administrator también puede desactivar Client por medio de un mensaje.
+  El ApprovedStatus en Client permite que aparezca en busquedas y cree Projects.
+  
+ Crear, dar de baja y alta Technician:
+ 
+  Se crea objecto Technician, que en su constructor lleva Name, LastName, MailAddresss y Roles
+  Anteriormente se crearon objectos Role.
+  El objecto Adminstartor le envia un mensaje al objeto Technician, de que está activado.
+  Administrator también puede desactivar Technician por medio de un mensaje.
+  El ApprovedStatus en Technician permite que aparezca en busquedas.
+  
+Crear, dar de baja y alta Project:
+
+  El objeto Client utiliza el método CreateProject que crea un objeto project.
+  El objeto Project en su constructor lleva: HourLoad, Client, Roles requeridos
+  El objeto Administrador envia un mensaje a Project, cambiando el atributo ApprovedStatus
+  
+ Vincular Proyecto a Técnicos:
+ 
+  El objecto Administrator envia un mensaje a Project, con un Objeto Technician, agregando éste último a la lista Technicians en Project
+ 
+Crear Feedback:
+
+  El objecto Client crea un objeto Feedback y se o asigna a Project, una vez que éste úñtimo tenga true en atributo CompletionStatus.
+  
+Calcular Compensation:
+
+  El objeto Project crea el objeto Compensation. El objeto Compensation utiliza atributos de Project para calcular y devolver TotalCompensation.
+
+Crear lista ordenada de tecnicos de acuerdo a distintos criterios:
+
+  El objeto Ranking conoce la lista de Technicians. Envia mensajes a ésta lista para conocer todos los Projects y sus Feedback.
+  En base a ésta lista de Projects, Technicians, Feedback y un criterio a definir se devuelve una lista ordena de Technician.
+
+Terminar Project:
+
+  El objeto Client envia un mensaje al objeto Project para modificar su atributo CompletionStatus a true.
+  
+Modificar Roles en Technician:
+
+  El objeto Admin envia un mensaje a el objeto Technician para modificar agregar un Role.
