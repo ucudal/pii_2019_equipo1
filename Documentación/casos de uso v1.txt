@@ -1,0 +1,23 @@
+Casos de uso: 
+
+-Que tiene que hacer el programa:
+
+Crear, dar de baja y alta Client
+  Al crear Client se define: Name, LastName, MailAddresss
+Crear, dar de baja y alta Technician
+  Al crear Technician se define: Name, LastName, MailAddresss y Roles
+Crear, dar de baja y alta Project
+  Al crear Project se define: HourLoad, Client, Roles requeridos
+Vincular proyecto a Tecnico
+Crear Feedback
+Calcular Compensation
+Crear lista ordenada de tecnicos de acuerdo a distintos criterios
+Terminar Project
+Modificar Roles en Technician
+
+-Que pueden hacer los usuarios:
+
+Técnico: Puede crear un usuario, ver sus evaluaciones y proyectos.
+Cliente: Puede crear un usuario, crear proyectos, crear evaluaciones, ver proyectos, terminar proyectos.
+Administrador: Dar de alta y baja usuarios, dar de alta y baja proyectos, asignar tecnicos y proyectos. Ver lista rankeada de Tecnicos.
+          Modificar roles de técnicos.
