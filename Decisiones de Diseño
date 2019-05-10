@@ -1,0 +1,74 @@
+Decisiones de diseño de clases:
+
+Clase Person:
+
+Esta clase tiene el objetivo de contener atributos que describen 
+una persona: nombre, apellido y correo. Esta clase es base de User y Administrator.
+
+Clase User:
+
+Esta clase expande la clase Person, agregando un status de baja/alta.
+Esta clase tiene la función de clasificar las clases derivadas de Person en usuarios 
+o administradores.
+
+Clase Administrator.
+
+El objetivo de esta clase es administrar el vínculo entre Client y Technician por medio
+de Project.
+Es una clase derivada de Person, al igual que User. Esta clase impone un tipo con
+operaciones para dar de baja/alta proyectos y usuarios, asignar tecnicos a proyectos y modificar
+la lista Roles de los objetos Technician.
+
+Clase Technician
+
+Esta clase tiene el objetivo de contener los atributos que describen la participación, o potencial
+participación, de un estudiante en proyectos. Es una clase derivada de User.
+
+Clase Role:
+
+Esta clase tiene el objetivo de contener la descripción de una función a cumplir en
+un proyecto. Esta descripción consiste de un Level (avanzado, básico) y una
+descripción (Sonidista, Coreografo, etc)
+
+Clase Client
+
+Esta clase impone un tipo con las operaciones a realizar por un usuario cliente.
+Es por medio de esta clase que el usuario ingresa la información requerida para
+crear un objeto Project. Siguiendo esta misma lógica, esta clase también es la que
+crea objetos Feedback y envia un mensaje a Project para cambiar su estado a
+completado.
+
+Clase Project
+
+Esta clase impone un tipo que permite a sus objetos contener toda la información
+relevante respecto a un proyecto "de la vida real". Al mismo tiempo este tipo 
+impone métodos para reflejar en el estado del mismo, cambios en el proyecto
+"de la vida real".
+
+Es quien contiene los objetos Compensation y Feedback, porque estos utilizan atributos
+de Project, y al mismo tiempo Project conoce Client y Technician, que son quienes
+"quieren conocer" Compensation y Feedback.
+
+Clase Compensation
+
+Esta clase contiene la lógica para el cálculo de la remuneración total.
+Este cálculo se hace en base a atributos contenidos en Project.
+
+Clase Feedback
+
+Esta clase contiene la lógica para resumir y agregar la información de cada
+FeedbackItem. La idea es que existan cuestionarios con preguntas y respuestas
+del 1 al 10. Feedback contiene todas estas preguntas y respuestas, en la forma de una lista
+de FeedbackItem.
+
+Clase FeedbackItem
+
+Los objetos de esta clase tienen una pregunta y una respueta rankeada del 1 al 10.
+
+Clase Ranking
+
+Esta clase tiene el objetivo de contener la lógica que procesa información
+de evaluaciones y técnicos para devolver una lista ordenada de técnicos.
+Podría implementarse también como una interfaz IRanking, con el objetivo de que 
+las clases Ranking que implementen el tipo IRanking contengan criterios distintos.
+
