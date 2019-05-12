@@ -174,7 +174,7 @@
     ],
     "collaborators": [
       "DBContext",
-      "Clases en Model"
+      "clases en Model"
     ]
   },
   {
@@ -186,7 +186,8 @@
       "Recibir mensajes de Page y clases en Model para persistir el estado del programa"
     ],
     "collaborators": [
-      ""
+      "Page",
+      "clases en Model"
     ]
   }
 ]
