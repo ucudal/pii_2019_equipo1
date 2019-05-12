@@ -3,15 +3,16 @@
     "name": "Administrator",
     "superclasses": "Person",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Cambiar atributo ApprovedStatus en Users (clase)",
-      "Cambiar atributo ApprovedStatus en Project (clase)",
-      "Asignar Technician a Project",
-      "Modificar lista de Roles(clase en Technician)"
+      "Operación: Cambiar atributo ApprovedStatus en Users (clase)",
+      "Operación: Cambiar atributo ApprovedStatus en Project (clase)",
+      "Operación: Asignar Technician a Project",
+      "Operación: Modificar lista de Roles en objeto Technician"
     ],
     "collaborators": [
       "User",
+      "Technician",
       "Project"
     ]
   },
@@ -19,11 +20,11 @@
     "name": "Feedback",
     "superclasses": "",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer FeedbackItem (clase)",
-      "Conocer Score (atributo)",
-      "Calcular Score del proyecto"
+      "Conocer: lista de FeedbackItem",
+      "Conocer: TotalScore (atributo int)",
+      "Operación: Calcular TotalScore (atributo int) del proyecto"
     ],
     "collaborators": [
       "FeedbackItem"
@@ -33,10 +34,10 @@
     "name": "FeedbackItem",
     "superclasses": "",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Contener Question (atributo)",
-      "Contener Score (atributo)"
+      "Conocer: Question (atributo : string)",
+      "Conocer: Score (atributo : string)"
     ],
     "collaborators": [
       "Feedback"
@@ -46,16 +47,16 @@
     "name": "Project",
     "superclasses": "",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer su HourLoad (atributo)",
-      "Conocer su Compensation (clase)",
-      "Conocer su Feedback (clase)",
-      "Conocer su ApprovedStatus (atributo)",
-      "Conocer su CompletionStatus (atributo)",
-      "Conocer su Client (clase)",
-      "Conocer su lista de Technician (clase)",
-      "Conocer lista de Role (clase) requeridos"
+      "Conocer: HourLoad (atributo : int)",
+      "Conocer: Compensation (clase)",
+      "Conocer: Feedback (clase)",
+      "Conocer: ApprovedStatus (atributo : bool)",
+      "Conocer: CompletionStatus (atributo : bool)",
+      "Conocer: Client (clase)",
+      "Conocer: lista de Technician (clase)",
+      "Conocer: lista de Role (clase) requeridos"
     ],
     "collaborators": [
       "Compensation",
@@ -68,10 +69,10 @@
     "name": "Compensation",
     "superclasses": "",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer TotalCompensation (atributo)",
-      "Calcular TotalCompensation"
+      "Conocer: TotalCompensation (int : atributo)",
+      "Operación: Calcular TotalCompensation"
     ],
     "collaborators": [
       "Project"
@@ -81,10 +82,10 @@
     "name": "Role",
     "superclasses": "",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer Level (atributo)",
-      "Conocer Description (atributo, ej sonidista)"
+      "Conocer: Level (atributo : string)",
+      "Conocer: Description (atributo: string)"
     ],
     "collaborators": [
       "Technician"
@@ -92,11 +93,11 @@
   },
   {
     "name": "User",
-    "superclasses": "",
+    "superclasses": "Technician, Client",
     "subclasses": "Person",
-    "type 2": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer ApprovedStatus (atributo)"
+      "Conocer: ApprovedStatus (atributo : bool)"
     ],
     "collaborators": [
       "Administrator"
@@ -105,13 +106,13 @@
   {
     "name": "Client",
     "superclasses": "",
-    "subclasses": "Usuario",
-    "type 1": "",
+    "subclasses": "User",
+    "type": 1,
     "responsibilities": [
-      "Conocer lista Project (clase)",
-      "Crear Feedback (clase)",
-      "Crear Project (clase)",
-      "Cambiar CompletionStatus (atributo de Project clase)"
+      "Conocer: lista de Project (clase)",
+      "Operación: Crear Feedback (clase) y asignarlo a Project",
+      "Operación: Crear Project (clase)",
+      "Operación: Cambiar CompletionStatus (atributo de objeto Project)"
     ],
     "collaborators": [
       "Project",
@@ -122,22 +123,24 @@
     "name": "Technician",
     "superclasses": "User",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer lista Projects (Clase)",
-      "Conocer lista Roles (Clase)",
-      "Conocer PrimaryRole (Role)"
+      "Conocer: lista Projects (Clase)",
+      "Conocer: lista Roles (Clase)",
+      "Conocer: PrimaryRole (atributo : Role)"
     ],
-    "collaborators": []
+    "collaborators": [
+      ""
+    ]
   },
   {
     "name": "Ranking",
     "superclasses": "",
     "subclasses": "",
-    "type 1": "",
+    "type": 1,
     "responsibilities": [
-      "Conocer lista Technician (clase)",
-      "Contener lógica de orden de lista Technician"
+      "Conocer: lista Technician (clase)",
+      "Operación: Devolver lista ordenada de Technician"
     ],
     "collaborators": [
       "Project",
@@ -150,10 +153,37 @@
     "subclasses": "User, Administrator",
     "type": 2,
     "responsibilities": [
-      "Conocer Name (atributo)",
-      "Conocer LastName (atributo)",
-      "Conocer MailAddress (atributo)",
+      "Conocer: Name (atributo : string)",
+      "Conocer: LastName (atributo : string)",
+      "Conocer: MailAddress (atributo : string)",
       ""
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Page",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Recibir input de usuario, con información para crear objetos",
+      "Enviar información a DBContext para persistir estado del programa",
+      ""
+    ],
+    "collaborators": [
+      "DBContext",
+      "Clases en Model"
+    ]
+  },
+  {
+    "name": "DBContext",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Recibir mensajes de Page y clases en Model para persistir el estado del programa"
     ],
     "collaborators": [
       ""
