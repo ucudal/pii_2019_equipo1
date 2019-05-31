@@ -39,6 +39,9 @@ namespace RazorPagesLinked
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            //cosa de identity
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +62,9 @@ namespace RazorPagesLinked
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            
+            //cosa de identity
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
