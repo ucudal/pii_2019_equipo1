@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/felipeperdomo/Downloads/pii_2019_equipo1-Linkedv0/Linked/RazorPagesLinked/RazorPagesLinked.csproj",
+  "FilePath": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/Linked/RazorPagesLinked/RazorPagesLinked.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2814,8 +2814,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Pages/Linked3/Delete.cshtml",
+      "TargetPath": "Pages/Linked3/Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Pages/Shared/_CookieConsentPartial.cshtml",
       "TargetPath": "Pages/Shared/_CookieConsentPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages/Linked3/Edit.cshtml",
+      "TargetPath": "Pages/Linked3/Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -2841,6 +2851,21 @@
     {
       "FilePath": "Pages/Shared/_Layout.cshtml",
       "TargetPath": "Pages/Shared/_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages/Linked3/Details.cshtml",
+      "TargetPath": "Pages/Linked3/Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages/Linked3/Index.cshtml",
+      "TargetPath": "Pages/Linked3/Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Pages/Linked3/Create.cshtml",
+      "TargetPath": "Pages/Linked3/Create.cshtml",
       "FileKind": "mvc"
     },
     {

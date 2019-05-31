@@ -3,10 +3,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 namespace RazorPagesLinked.Models
 {
-    public class FeedBack
+    public class FeedBack 
     {
         public int ID { get; set; }
+
         public List<FeedBackItem> Items { get; set; }
+    
         private int totalscore;
 
         public int TotalScore 
@@ -15,6 +17,11 @@ namespace RazorPagesLinked.Models
             {   
                 //CalculateScore()
                 return this.totalscore;
+            
+            }
+            set{
+                totalscore = value;
+                //totalscore = calculatedscore
             }
         }
 

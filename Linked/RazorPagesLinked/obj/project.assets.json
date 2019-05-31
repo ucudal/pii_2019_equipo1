@@ -13286,11 +13286,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/felipeperdomo/Downloads/pii_2019_equipo1-Linkedv0/Linked/RazorPagesLinked/RazorPagesLinked.csproj",
+      "projectUniqueName": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/Linked/RazorPagesLinked/RazorPagesLinked.csproj",
       "projectName": "RazorPagesLinked",
-      "projectPath": "/Users/felipeperdomo/Downloads/pii_2019_equipo1-Linkedv0/Linked/RazorPagesLinked/RazorPagesLinked.csproj",
+      "projectPath": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/Linked/RazorPagesLinked/RazorPagesLinked.csproj",
       "packagesPath": "/Users/felipeperdomo/.nuget/packages/",
-      "outputPath": "/Users/felipeperdomo/Downloads/pii_2019_equipo1-Linkedv0/Linked/RazorPagesLinked/obj/",
+      "outputPath": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/Linked/RazorPagesLinked/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
