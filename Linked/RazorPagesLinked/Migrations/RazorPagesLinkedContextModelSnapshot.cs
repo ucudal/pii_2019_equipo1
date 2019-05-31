@@ -29,6 +29,20 @@ namespace RazorPagesLinked.Migrations
                     b.ToTable("FeedBackItem");
                 });
 
+            modelBuilder.Entity("RazorPagesLinked.Models.LinkedUser", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("ApprovedStatus");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("LinkedUser");
+                });
+
             modelBuilder.Entity("RazorPagesLinked.Models.Role", b =>
                 {
                     b.Property<int>("ID")

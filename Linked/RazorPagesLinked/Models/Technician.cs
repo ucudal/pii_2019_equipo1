@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesLinked.Models
 {
-    public class Technician : User
+    public class Technician : LinkedUser
     {
-        
+
     }
 }

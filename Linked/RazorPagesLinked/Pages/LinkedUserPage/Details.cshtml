@@ -1,0 +1,31 @@
+@page
+@model RazorPagesLinked.Pages.LinkedUserPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LinkedUser</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkedUser.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkedUser.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkedUser.ApprovedStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkedUser.ApprovedStatus)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.LinkedUser.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

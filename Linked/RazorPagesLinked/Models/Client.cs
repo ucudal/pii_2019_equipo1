@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RazorPagesLinked.Models
 {
-    public class Client : User
+    public class Client : LinkedUser
     {
     }
 }

@@ -11,5 +11,6 @@ namespace RazorPagesLinked.Models
 
         public DbSet<RazorPagesLinked.Models.Role> Role { get; set; }
         public DbSet<RazorPagesLinked.Models.FeedBackItem> FeedBackItem { get; set; }
+        public DbSet<RazorPagesLinked.Models.LinkedUser> LinkedUser { get; set; }
     }
 }

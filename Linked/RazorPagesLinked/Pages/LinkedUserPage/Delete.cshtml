@@ -1,0 +1,34 @@
+@page
+@model RazorPagesLinked.Pages.LinkedUserPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LinkedUser</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkedUser.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkedUser.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LinkedUser.ApprovedStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LinkedUser.ApprovedStatus)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="LinkedUser.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

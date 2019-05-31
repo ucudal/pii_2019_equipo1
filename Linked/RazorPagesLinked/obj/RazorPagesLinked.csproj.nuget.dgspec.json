@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj": {}
+    "C:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj": {}
   },
   "projects": {
-    "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj": {
+    "C:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj",
+        "projectUniqueName": "C:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj",
         "projectName": "RazorPagesLinked",
-        "projectPath": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj",
+        "projectPath": "C:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\RazorPagesLinked.csproj",
         "packagesPath": "C:\\Users\\estudiante.fit\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\obj\\",
+        "outputPath": "C:\\Users\\estudiante.fit\\Desktop\\2000ish\\2019\\UCU\\Programacion 2\\pii_2019_equipo1\\Linked\\RazorPagesLinked\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

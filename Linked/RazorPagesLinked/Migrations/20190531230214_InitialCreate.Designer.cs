@@ -8,7 +8,7 @@ using RazorPagesLinked.Models;
 namespace RazorPagesLinked.Migrations
 {
     [DbContext(typeof(RazorPagesLinkedContext))]
-    [Migration("20190527224229_InitialCreate")]
+    [Migration("20190531230214_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,6 +29,20 @@ namespace RazorPagesLinked.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("FeedBackItem");
+                });
+
+            modelBuilder.Entity("RazorPagesLinked.Models.LinkedUser", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("ApprovedStatus");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("LinkedUser");
                 });
 
             modelBuilder.Entity("RazorPagesLinked.Models.Role", b =>
