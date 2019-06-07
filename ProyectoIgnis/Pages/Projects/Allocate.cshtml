@@ -1,0 +1,64 @@
+@page
+@model ProyectoIgnis.Pages.Projects.AllocateModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Asignar tecnico</h1>
+
+<div>
+    <h4>Tecnico</h4>
+    <hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician.FirstOrDefault().LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician.FirstOrDefault().Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician.FirstOrDefault().Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Technician)
+{
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+            <form method="post">
+                <input type="hidden" asp-for=Project />
+                <input type="submit" value="Select" class="btn btn-danger" />
+            </form>
+            </td>   
+            </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="./Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
