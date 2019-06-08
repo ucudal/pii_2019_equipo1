@@ -13304,11 +13304,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/felipeperdomo/Documents/ProyectoIgnis/ProyectoIgnis.csproj",
+      "projectUniqueName": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/ProyectoIgnis/ProyectoIgnis.csproj",
       "projectName": "ProyectoIgnis",
-      "projectPath": "/Users/felipeperdomo/Documents/ProyectoIgnis/ProyectoIgnis.csproj",
+      "projectPath": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/ProyectoIgnis/ProyectoIgnis.csproj",
       "packagesPath": "/Users/felipeperdomo/.nuget/packages/",
-      "outputPath": "/Users/felipeperdomo/Documents/ProyectoIgnis/obj/",
+      "outputPath": "/Users/felipeperdomo/Documents/GitHub/pii_2019_equipo1/ProyectoIgnis/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

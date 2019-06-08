@@ -41,6 +41,27 @@
         <dd>
             @Html.DisplayFor(model => model.ProjectAllocated.Level)
         </dd>
+        @if(Model.ProjectAllocated?.Technician != null) // propagacion null
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectAllocated.Technician.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProjectAllocated.Technician.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectAllocated.Technician.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProjectAllocated.Technician.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectAllocated.Technician.MailAdress)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProjectAllocated.Technician.MailAdress)
+            </dd>
+        }
     </dl>
 </div>
 <div>

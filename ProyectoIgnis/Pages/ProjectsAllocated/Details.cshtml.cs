@@ -27,7 +27,7 @@ namespace ProyectoIgnis.Pages.ProjectsAllocated
                 return NotFound();
             }
 
-            ProjectAllocated = await _context.ProjectAllocated.FirstOrDefaultAsync(m => m.ID == id);
+            ProjectAllocated = await _context.ProjectAllocated.Include(p => p.Technician).FirstOrDefaultAsync(m => m.ID == id);
 
             if (ProjectAllocated == null)
             {
