@@ -4,16 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
+using Microsoft.EntityFrameworkCore;
+using Linked.Areas.Identity.Data;
 
 namespace Linked.Pages.Projects
 {
-    public class DetailsModel : PageModel
+    public class AllocateModel : PageModel
     {
         private readonly Linked.Models.LinkedContext _context;
 
-        public DetailsModel(Linked.Models.LinkedContext context)
+        public AllocateModel(Linked.Models.LinkedContext context)
         {
             _context = context;
         }
@@ -26,10 +28,12 @@ namespace Linked.Pages.Projects
             var db = _context;
             IEnumerable<Technician> e = Enumerable.Empty<Technician>();
             try {
-                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
-                    e = e.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
+                foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
+                    if (technician.Role == Project.Role && technician.Level == Project.Level){
+                        e = e.Append(technician);
+                    }
                 }
-           }catch{}
+            }catch{}
             return e;
         }
 
@@ -40,8 +44,7 @@ namespace Linked.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.Client).FirstOrDefaultAsync(m => m.ProjectID == id);
+            Project = await _context.Project.FirstOrDefaultAsync(m => m.ProjectID == id);
 
             Technicians = LoadTechnicians();
 

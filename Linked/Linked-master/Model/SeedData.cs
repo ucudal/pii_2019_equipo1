@@ -13,14 +13,37 @@ namespace Linked.Models{
                     return;   // DB has been seeded
                 };
 
+                var Clients = new Client[]{
+                    new Client {Name = "c0"},
+                    new Client {Name = "c1"},
+                    new Client {Name = "c2"},
+                    new Client {Name = "c3"},
+                    new Client {Name = "c4"},
+                    new Client {Name = "c5"},
+                    new Client {Name = "c6"},
+                    new Client {Name = "c7"}
+                };
+
+                foreach (Client c in Clients){
+                    context.Client.Add(c);
+                };
+                context.SaveChanges();
+
                 var Projects = new Project[]{
-                    new Project { Title = "p1", Date = DateTime.Parse("2019-05-01")},
-                    new Project { Title = "p2", Date = DateTime.Parse("2019-05-02")},
-                    new Project { Title = "p3", Date = DateTime.Parse("2019-05-03")},
-                    new Project { Title = "p4", Date = DateTime.Parse("2019-05-04")},
-                    new Project { Title = "p5", Date = DateTime.Parse("2019-05-05")},
-                    new Project { Title = "p6", Date = DateTime.Parse("2019-05-06")},
-                    new Project { Title = "p7", Date = DateTime.Parse("2019-05-07")}
+                    new Project { Title = "p1", Date = DateTime.Parse("2019-05-01"), 
+                    Role = Role.Director, Level = Level.Avanzado, ClientID = 1, Description = "d1", CompletionStatus = false},
+                    new Project { Title = "p2", Date = DateTime.Parse("2019-05-02"),
+                    Role = Role.Actor, Level = Level.Básico, ClientID = 2, Description = "d2", CompletionStatus = false},
+                    new Project { Title = "p3", Date = DateTime.Parse("2019-05-03"),
+                    Role = Role.Camarógrafo, Level = Level.Intermedio, ClientID = 3, Description = "d3", CompletionStatus = false},
+                    new Project { Title = "p4", Date = DateTime.Parse("2019-05-04"),
+                    Role = Role.Sonidista, Level = Level.Profesional, ClientID = 4, Description = "d4", CompletionStatus = false},
+                    new Project { Title = "p5", Date = DateTime.Parse("2019-05-05"),
+                    Role = Role.Director, Level = Level.Intermedio, ClientID = 5, Description = "d5", CompletionStatus = false},
+                    new Project { Title = "p6", Date = DateTime.Parse("2019-05-06"),
+                    Role = Role.Camarógrafo, Level = Level.Básico, ClientID = 6, Description = "d6", CompletionStatus = true},
+                    new Project { Title = "p7", Date = DateTime.Parse("2019-05-07"),
+                    Role = Role.Actor, Level = Level.Avanzado, ClientID = 7, Description = "d7", CompletionStatus = false},
                 };
 
                 foreach (Project p in Projects){
@@ -28,18 +51,27 @@ namespace Linked.Models{
                 };
                 context.SaveChanges();
 
-                var Users = new User[]{
-                    new User { FirstName = "fn1", Birthday = DateTime.Parse("2000-05-01")},
-                    new User { FirstName = "fn2", Birthday = DateTime.Parse("2000-05-02")},
-                    new User { FirstName = "fn3", Birthday = DateTime.Parse("2000-05-03")},
-                    new User { FirstName = "fn4", Birthday = DateTime.Parse("2000-05-04")},
-                    new User { FirstName = "fn5", Birthday = DateTime.Parse("2000-05-05")},
-                    new User { FirstName = "fn6", Birthday = DateTime.Parse("2000-05-06")},
-                    new User { FirstName = "fn7", Birthday = DateTime.Parse("2000-05-07")}
+                var Technicians = new Technician[]{
+                    new Technician { Name = "tec1", Birthday = DateTime.Parse("2000-05-01"), 
+                    Role = Role.Director, Level = Level.Avanzado},
+                    new Technician { Name = "tec2", Birthday = DateTime.Parse("2000-05-02"), 
+                    Role = Role.Camarógrafo, Level = Level.Profesional},
+                    new Technician { Name = "tec3", Birthday = DateTime.Parse("2000-05-03"), 
+                    Role = Role.Sonidista, Level = Level.Básico},
+                    new Technician { Name = "tec4", Birthday = DateTime.Parse("2000-05-04"), 
+                    Role = Role.Director, Level = Level.Avanzado},
+                    new Technician { Name = "tec5", Birthday = DateTime.Parse("2000-05-05"), 
+                    Role = Role.Fotógrafo, Level = Level.Intermedio},
+                    new Technician { Name = "tec6", Birthday = DateTime.Parse("2000-05-06"), 
+                    Role = Role.Sonidista, Level = Level.Básico},
+                    new Technician { Name = "tec7", Birthday = DateTime.Parse("2000-05-07"), 
+                    Role = Role.Fotógrafo, Level = Level.Profesional},
+                    new Technician { Name = "tec8", Birthday = DateTime.Parse("2000-05-08"), 
+                    Role = Role.Actor, Level = Level.Básico},
                 };
 
-                foreach (User u in Users){
-                    context.User.Add(u);
+                foreach (Technician t in Technicians){
+                    context.Technician.Add(t);
                 };
                 context.SaveChanges();
 
@@ -58,15 +90,74 @@ namespace Linked.Models{
                 };
                 context.SaveChanges();
 
-                var FeedBacks = new FeedBack[]{
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 0).ScoreSheetID,UserID = Users.Single(u => u.UserID == 0).UserID,ProjectID = Projects.Single(p => p.ProjectID == 0).ProjectID},
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 1).ScoreSheetID,UserID = Users.Single(u => u.UserID == 0).UserID,ProjectID = Projects.Single(p => p.ProjectID == 1).ProjectID},
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 2).ScoreSheetID,UserID = Users.Single(u => u.UserID == 1).UserID,ProjectID = Projects.Single(p => p.ProjectID == 0).ProjectID},
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 3).ScoreSheetID,UserID = Users.Single(u => u.UserID == 2).UserID,ProjectID = Projects.Single(p => p.ProjectID == 0).ProjectID},
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 4).ScoreSheetID,UserID = Users.Single(u => u.UserID == 3).UserID,ProjectID = Projects.Single(p => p.ProjectID == 2).ProjectID},
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 5).ScoreSheetID,UserID = Users.Single(u => u.UserID == 4).UserID,ProjectID = Projects.Single(p => p.ProjectID == 2).ProjectID},
-                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 6).ScoreSheetID,UserID = Users.Single(u => u.UserID == 5).UserID,ProjectID = Projects.Single(p => p.ProjectID == 3).ProjectID}
+                var Employs = new Employ[]{
+
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec1").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p1").ProjectID
+                    },
+
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec8").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p2").ProjectID
+                    },
+                    
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec2").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p3").ProjectID
+                    },
+
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec2").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p4").ProjectID
+                    },
+                    
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec3").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p5").ProjectID
+                    },
+
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec4").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p6").ProjectID
+                    },
+                    
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec5").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p7").ProjectID
+                    },
+
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.Name == "tec6").TechnicianID,
+                        ProjectID = context.Project.Single(p => p.Title == "p1").ProjectID
+                    }
+
                 };
+
+                foreach (Employ e in Employs){
+                    context.Employ.Add(e);
+                }
+                context.SaveChanges();
+
+                var FeedBacks = new FeedBack[]{
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 1).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 1).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 2).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 2).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 3).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 3).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 4).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 4).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 5).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 4).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 6).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 4).TechnicianID}
+                };
+
+                foreach (FeedBack f in FeedBacks){
+                    context.FeedBack.Add(f);
+                };
+                context.SaveChanges();
 
                 /*
 
@@ -84,11 +175,6 @@ namespace Linked.Models{
                 context.SaveChanges();
 
                 */
-
-                foreach (FeedBack f in FeedBacks){
-                    context.FeedBack.Add(f);
-                };
-                context.SaveChanges();
             }
         }
     }

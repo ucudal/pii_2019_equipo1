@@ -12,10 +12,18 @@ namespace Linked.Models{
         public int ProjectID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        
-        [DataType(DataType.Date)] 
+        public bool CompletionStatus {get; set;}
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public List<FeedBack> FeedBacks { get; set; }
+        public Role Role{ get; set; }
+        //public Role Role;
+        public Level Level{ get; set; }
+        //public Level Level;
+        
+        public IList<Employ> Employees { get; set; } // Technicians
+
+        public int ClientID { get; set; } 
+        public Client Client { get; set; }
     }   
 }

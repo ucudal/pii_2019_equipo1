@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Linked.Models;
 
-namespace Linked.Pages.Projects
+namespace Linked.Pages.Clients
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Linked.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public Client Client { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,9 @@ namespace Linked.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.Client).FirstOrDefaultAsync(m => m.ProjectID == id);
+            Client = await _context.Client.FirstOrDefaultAsync(m => m.ClientID == id);
 
-            if (Project == null)
+            if (Client == null)
             {
                 return NotFound();
             }
@@ -45,11 +44,11 @@ namespace Linked.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project.FindAsync(id);
+            Client = await _context.Client.FindAsync(id);
 
-            if (Project != null)
+            if (Client != null)
             {
-                _context.Project.Remove(Project);
+                _context.Client.Remove(Client);
                 await _context.SaveChangesAsync();
             }
 

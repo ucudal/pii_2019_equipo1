@@ -17,7 +17,16 @@
                 @Html.DisplayNameFor(model => model.Project[0].Title)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Project[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].CompletionStatus)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Project[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Client)
             </th>
             <th></th>
         </tr>
@@ -29,12 +38,22 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletionStatus)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-page="../Clients/Details" asp-route-id="@item.Client.ClientID">@Html.DisplayFor(modelItem => item.Client.Name)</a>
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ProjectID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ProjectID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ProjectID">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.ProjectID">Delete</a> |
+                <a asp-page="./Allocate" asp-route-id="@item.ProjectID">Allocate</a>
             </td>
         </tr>
 }

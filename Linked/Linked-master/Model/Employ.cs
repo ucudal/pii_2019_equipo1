@@ -3,16 +3,21 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using Linked.Areas.Identity.Data;
+using System.Collections.Generic;
 
 namespace Linked.Models{
-    public class FeedBack{
+    public class Employ{
+        [Key]
         public int TechnicianID { get; set; }
+
+        [Key]
+        public int  ProjectID { get; set; }
+
+        [Required]
         public Technician Technician { get; set; }
 
-        public int ScoreSheetID { get; set; }
-        public ScoreSheet ScoreSheet { get; set; }
+        [Required]
+        public Project Project { get; set; }
     }
 }

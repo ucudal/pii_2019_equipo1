@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Linked.Models;
 
-namespace Linked.Pages.Projects
+namespace Linked.Pages.Clients
 {
     public class DetailsModel : PageModel
     {
@@ -18,19 +18,12 @@ namespace Linked.Pages.Projects
             _context = context;
         }
 
-        public Project Project { get; set; }
+        public Client Client { get; set; }
+        public IEnumerable<Project> Projects {get;set;}
 
-        public IEnumerable<Technician> Technicians {get;set;}
-
-        public IEnumerable<Technician> LoadTechnicians(){
+        public IEnumerable<Project> LoadProjects(){
             var db = _context;
-            IEnumerable<Technician> e = Enumerable.Empty<Technician>();
-            try {
-                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
-                    e = e.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
-                }
-           }catch{}
-            return e;
+            return db.Project.Where(p=>p.ClientID == Client.ClientID).AsEnumerable();
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -40,12 +33,10 @@ namespace Linked.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.Client).FirstOrDefaultAsync(m => m.ProjectID == id);
+            Client = await _context.Client.FirstOrDefaultAsync(m => m.ClientID == id);
+            Projects = LoadProjects();
 
-            Technicians = LoadTechnicians();
-
-            if (Project == null)
+            if (Client == null)
             {
                 return NotFound();
             }

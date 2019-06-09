@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Linked.Models;
 
-namespace Linked.Pages.Projects
+namespace Linked.Pages.Technicians
 {
     public class IndexModel : PageModel
     {
@@ -18,12 +18,11 @@ namespace Linked.Pages.Projects
             _context = context;
         }
 
-        public IList<Project> Project { get;set; }
+        public IList<Technician> Technician { get;set; }
 
         public async Task OnGetAsync()
         {
-            Project = await _context.Project
-                .Include(p => p.Client).ToListAsync();
+            Technician = await _context.Technician.ToListAsync();
         }
     }
 }

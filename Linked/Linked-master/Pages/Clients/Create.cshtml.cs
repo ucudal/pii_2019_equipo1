@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
 
-namespace Linked.Pages.Projects
+namespace Linked.Pages.Clients
 {
     public class CreateModel : PageModel
     {
@@ -20,12 +20,11 @@ namespace Linked.Pages.Projects
 
         public IActionResult OnGet()
         {
-        ViewData["ClientID"] = new SelectList(_context.Client, "ClientID", "ClientID");
             return Page();
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public Client Client { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -34,7 +33,7 @@ namespace Linked.Pages.Projects
                 return Page();
             }
 
-            _context.Project.Add(Project);
+            _context.Client.Add(Client);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

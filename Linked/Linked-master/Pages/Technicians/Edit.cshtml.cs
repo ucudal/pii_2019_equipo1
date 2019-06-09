@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Linked.Models;
 
-namespace Linked.Pages.Projects
+namespace Linked.Pages.Technicians
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Linked.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; }
+        public Technician Technician { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,14 +29,12 @@ namespace Linked.Pages.Projects
                 return NotFound();
             }
 
-            Project = await _context.Project
-                .Include(p => p.Client).FirstOrDefaultAsync(m => m.ProjectID == id);
+            Technician = await _context.Technician.FirstOrDefaultAsync(m => m.TechnicianID == id);
 
-            if (Project == null)
+            if (Technician == null)
             {
                 return NotFound();
             }
-           ViewData["ClientID"] = new SelectList(_context.Client, "ClientID", "ClientID");
             return Page();
         }
 
@@ -47,7 +45,7 @@ namespace Linked.Pages.Projects
                 return Page();
             }
 
-            _context.Attach(Project).State = EntityState.Modified;
+            _context.Attach(Technician).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +53,7 @@ namespace Linked.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.ProjectID))
+                if (!TechnicianExists(Technician.TechnicianID))
                 {
                     return NotFound();
                 }
@@ -68,9 +66,9 @@ namespace Linked.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-        private bool ProjectExists(int id)
+        private bool TechnicianExists(int id)
         {
-            return _context.Project.Any(e => e.ProjectID == id);
+            return _context.Technician.Any(e => e.TechnicianID == id);
         }
     }
 }

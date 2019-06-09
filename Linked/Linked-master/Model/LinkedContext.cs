@@ -8,31 +8,25 @@ namespace Linked.Models
         public LinkedContext (DbContextOptions<LinkedContext> options)
             : base(options){
         }
+
         //public DbSet<Linked.Models.FeedBack> FeedBack { get; set; }
+        
         public DbSet<Linked.Models.Project> Project { get; set; }
-        public DbSet<Linked.Models.User> User { get; set; }
+        public DbSet<Linked.Models.Technician> Technician { get; set; }
         public DbSet<Linked.Models.ScoreSheet> ScoreSheet { get; set; }
+        public DbSet<Linked.Models.Client> Client { get; set; }
+        
+        public DbSet<Employ> Employ { get; set; }
+        public DbSet<FeedBack> FeedBack { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
-            modelBuilder.Entity<FeedBack>()
-                .HasKey(fb => new { fb.ProjectID, fb.UserID, fb.ScoreSheetID });
-            
-            modelBuilder.Entity<FeedBack>()
-                .HasOne(pt => pt.Project)
-                .WithMany(p => p.FeedBacks)
-                .HasForeignKey(pt => pt.ProjectID); 
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<FeedBack>()
-                .HasOne(pt => pt.User)
-                .WithMany(t => t.FeedBacks)
-                .HasForeignKey(pt => pt.UserID);
+            modelBuilder.Entity<Employ>().ToTable("Employ")
+                .HasKey(e => new { e.TechnicianID, e.ProjectID });
             
-            modelBuilder.Entity<FeedBack>()
-                .HasOne(pt => pt.ScoreSheet)
-                .WithOne(s => s.FeedBack);
-                //.HasForeignKey(pt => pt.ScoreSheetID);
+            modelBuilder.Entity<FeedBack>().ToTable("FeedBack")
+                .HasKey(f => new { f.TechnicianID, f.ScoreSheetID});
         }
-
-        public DbSet<Linked.Models.FeedBack> FeedBack { get; set; }
     }
 }
