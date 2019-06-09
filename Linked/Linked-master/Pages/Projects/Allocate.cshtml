@@ -9,20 +9,13 @@
 @if (Model.Technicians.Count()>0)
 {
 <div>
-    <h4>Tecnico</h4>
-    <hr />
+    <h4>Técnico</h4>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Technicians.FirstOrDefault().Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Technicians.FirstOrDefault().Level)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Technicians.FirstOrDefault().Role)
-            </th>
+            <th> Name </th>
+            <th> Level </th>
+            <th> Role </th>
             <th></th>
         </tr>
     </thead>
@@ -51,20 +44,21 @@
 </div>
 }
 
-@section Scripts {
+@section Scripts 
+{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
 @if (Model.TechniciansAlternativos.Count()>0)
 {
-    <h4>Alternative Technicians</h4>
+    <h4>Técnico Alternativo</h4>
     <table class="table">
     <thead>
         <tr>
             <th> Name </th>
             <th> Level </th>
             <th> Role </th>
-
+            <th></th>
         </tr>
     </thead>
     <tbody>
