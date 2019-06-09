@@ -30,18 +30,27 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
+                            @if (User.IsInRole(IdentityData.AdminRoleName))
+                            {
                             <a class="nav-link text-dark" asp-area="" asp-page="/Projects/Index">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Technicians/Index">Technicians</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Clients/Index">Clients</a>
+                            }
                         </li>
                         <li class="nav-item">
                             @if (User.IsInRole(IdentityData.AdminRoleName))
                             {
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Technicians/Index">Technicians</a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole(IdentityData.AdminRoleName))
+                            {
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Clients/Index">Clients</a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole(IdentityData.AdminRoleName))
+                            {
+                                //<a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
                             }
                         </li>
                         <li class="nav-item">
