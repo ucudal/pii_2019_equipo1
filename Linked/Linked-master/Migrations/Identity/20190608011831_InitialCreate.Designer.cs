@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Linked.Migrations
+namespace Linked.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190605112641_InitialCreate")]
+    [Migration("20190608011831_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

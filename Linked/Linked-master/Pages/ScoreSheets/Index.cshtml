@@ -1,0 +1,66 @@
+@page
+@model Linked.Pages.ScoreSheets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreSheet[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreSheet[0].Puntualidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreSheet[0].Respeto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreSheet[0].Formalidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreSheet[0].Profesionalismo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreSheet[0].Compromiso)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ScoreSheet) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puntualidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Respeto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Formalidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profesionalismo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Compromiso)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ScoreSheetID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ScoreSheetID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ScoreSheetID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
