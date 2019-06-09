@@ -67,7 +67,40 @@ namespace Linked.Models{
                     new Technician { Name = "Ignacio Sica", Birthday = DateTime.Parse("1999-07-07"), 
                     Role = Role.Fotógrafo, Level = Level.Profesional},
                     new Technician { Name = "Martin Perdomo", Birthday = DateTime.Parse("1983-11-08"), 
-                    Role = Role.Actor, Level = Level.Básico}
+                    Role = Role.Actor, Level = Level.Básico},
+
+                    new Technician { Name = "Matías Drully", Birthday = DateTime.Parse("1987-12-30"), 
+                    Role = Role.Director, Level = Level.Intermedio},
+                    new Technician { Name = "Federico Shenak", Birthday = DateTime.Parse("1989-05-06"), 
+                    Role = Role.Sonidista, Level = Level.Avanzado},
+                    new Technician { Name = "Agustina Molares", Birthday = DateTime.Parse("1988-09-30"), 
+                    Role = Role.Fotógrafo, Level = Level.Básico},
+                    new Technician { Name = "Sofía Letica", Birthday = DateTime.Parse("1968-09-27"), 
+                    Role = Role.Sonidista, Level = Level.Avanzado},
+                    new Technician { Name = "Valeria Sollier", Birthday = DateTime.Parse("1978-01-18"), 
+                    Role = Role.Fotógrafo, Level = Level.Profesional},
+                    new Technician { Name = "Miguel Bonapartere", Birthday = DateTime.Parse("1985-09-29"), 
+                    Role = Role.Sonidista, Level = Level.Básico},
+                    new Technician { Name = "Felipe Ayala", Birthday = DateTime.Parse("1978-11-17"), 
+                    Role = Role.Sonidista, Level = Level.Intermedio},
+                    new Technician { Name = "Lucía Cuadran", Birthday = DateTime.Parse("1968-10-09"), 
+                    Role = Role.Actor, Level = Level.Intermedio},
+                    new Technician { Name = "Shakira Llambí", Birthday = DateTime.Parse("1947-10-09"), 
+                    Role = Role.Actor, Level = Level.Profesional},
+                    new Technician { Name = "Luis Suarez", Birthday = DateTime.Parse("1989-11-05"), 
+                    Role = Role.Director, Level = Level.Básico},
+                    new Technician { Name = "Lewis Hamilton", Birthday = DateTime.Parse("1999-06-16"), 
+                    Role = Role.Fotógrafo, Level = Level.Avanzado},
+                    new Technician { Name = "Sebastian Vettel", Birthday = DateTime.Parse("1979-08-17"), 
+                    Role = Role.Fotógrafo, Level = Level.Intermedio},
+                    new Technician { Name = "Cristiano Ronaldo", Birthday = DateTime.Parse("1998-07-19"), 
+                    Role = Role.Actor, Level = Level.Profesional},
+                    new Technician { Name = "Eduardo Nomake", Birthday = DateTime.Parse("1967-08-18"), 
+                    Role = Role.Sonidista, Level = Level.Básico},
+                    new Technician { Name = "Tessa Buonarroti", Birthday = DateTime.Parse("1986-12-24"), 
+                    Role = Role.Actor, Level = Level.Profesional},
+                    new Technician { Name = "Clara Ipha", Birthday = DateTime.Parse("1986-05-30"), 
+                    Role = Role.Director, Level = Level.Profesional}
                 };
 
                 foreach (Technician t in Technicians){
@@ -86,9 +119,21 @@ namespace Linked.Models{
                     new ScoreSheet {Date = DateTime.Now,Compromiso = 2,Puntualidad = 8,Formalidad = 2,Respeto = 9,Profesionalismo = 9},
                     new ScoreSheet {Date = DateTime.Now,Compromiso = 1,Puntualidad = 7,Formalidad = 6,Respeto = 7,Profesionalismo = 2},
                     new ScoreSheet {Date = DateTime.Now,Compromiso = 3,Puntualidad = 8,Formalidad = 8,Respeto = 8,Profesionalismo = 3},
-                    new ScoreSheet {Date = DateTime.Now,Compromiso = 6,Puntualidad = 4,Formalidad = 7,Respeto = 7,Profesionalismo = 7},
-                    new ScoreSheet {Date = DateTime.Now,Compromiso = 8,Puntualidad = 5,Formalidad = 9,Respeto = 9,Profesionalismo = 8},
-                    new ScoreSheet {Date = DateTime.Now,Compromiso = 9,Puntualidad = 6,Formalidad = 8,Respeto = 8,Profesionalismo = 7}
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 5,Puntualidad = 4,Formalidad = 7,Respeto = 7,Profesionalismo = 7},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 6,Puntualidad = 5,Formalidad = 7,Respeto = 9,Profesionalismo = 8},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 8,Puntualidad = 8,Formalidad = 7,Respeto = 9,Profesionalismo = 8},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 9,Puntualidad = 5,Formalidad = 9,Respeto = 9,Profesionalismo = 7},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 4,Puntualidad = 1,Formalidad = 9,Respeto = 8,Profesionalismo = 7},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 5,Puntualidad = 2,Formalidad = 5,Respeto = 8,Profesionalismo = 8},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 6,Puntualidad = 3,Formalidad = 6,Respeto = 9,Profesionalismo = 9},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 3,Puntualidad = 3,Formalidad = 6,Respeto = 7,Profesionalismo = 9},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 2,Puntualidad = 9,Formalidad = 4,Respeto = 8,Profesionalismo = 6},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 1,Puntualidad = 8,Formalidad = 2,Respeto = 9,Profesionalismo = 5},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 5,Puntualidad = 7,Formalidad = 1,Respeto = 7,Profesionalismo = 2},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 9,Puntualidad = 8,Formalidad = 2,Respeto = 8,Profesionalismo = 1},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 9,Puntualidad = 4,Formalidad = 4,Respeto = 7,Profesionalismo = 6},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 8,Puntualidad = 5,Formalidad = 3,Respeto = 9,Profesionalismo = 3},
+                    new ScoreSheet {Date = DateTime.Now,Compromiso = 9,Puntualidad = 6,Formalidad = 6,Respeto = 8,Profesionalismo = 9}
                 };
 
                 foreach (ScoreSheet sc in ScoreSheets){
@@ -153,6 +198,115 @@ namespace Linked.Models{
                     new Employ{
                         TechnicianID = context.Technician.Single(t => t.TechnicianID == 2).TechnicianID,
                         ProjectID = context.Project.Single(p => p.ProjectID == 5).ProjectID
+                    },
+
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 8).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 1).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 8).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 2).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 8).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 3).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 9).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 1).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 9).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 3).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 9).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 5).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 10).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 5).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 10).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 6).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 11).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 4).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 11).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 3).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 12).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 2).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 12).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 1).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 15).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 1).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 15).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 6).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 14).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 7).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 14).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 6).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 13).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 4).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 13).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 5).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 18).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 3).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 17).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 2).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 19).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 1).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 20).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 2).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 22).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 6).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 23).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 5).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 22).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 5).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 21).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 1).ProjectID
+                    },
+                    new Employ{
+                        TechnicianID = context.Technician.Single(t => t.TechnicianID == 21).TechnicianID,
+                        ProjectID = context.Project.Single(p => p.ProjectID == 2).ProjectID
                     }
                 };
 
@@ -185,7 +339,25 @@ namespace Linked.Models{
                     new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 11).ScoreSheetID,
                     TechnicianID = Technicians.Single(t => t.TechnicianID == 6).TechnicianID},
                     new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 12).ScoreSheetID,
-                    TechnicianID = Technicians.Single(t => t.TechnicianID == 2).TechnicianID}
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 2).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 13).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 10).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 14).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 10).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 15).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 8).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 16).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 8).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 17).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 15).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 18).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 16).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 19).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 16).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 20).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 5).TechnicianID},
+                    new FeedBack {ScoreSheetID = ScoreSheets.Single(s => s.ScoreSheetID == 21).ScoreSheetID,
+                    TechnicianID = Technicians.Single(t => t.TechnicianID == 18).TechnicianID}
                 };
 
                 foreach (FeedBack f in FeedBacks){

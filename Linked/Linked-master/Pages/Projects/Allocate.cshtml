@@ -6,7 +6,8 @@
 }
 
 <h1>Asignar tecnico</h1>
-
+@if (Model.Technicians.Count()>0)
+{
 <div>
     <h4>Tecnico</h4>
     <hr />
@@ -47,11 +48,48 @@
 }
     </tbody>
 </table>
-
-<div>
-    <a asp-page="./Index">Volver a la lista</a>
 </div>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+@if (Model.TechniciansAlternativos.Count()>0)
+{
+    <h4>Alternative Technicians</h4>
+    <table class="table">
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Level </th>
+            <th> Role </th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TechniciansAlternativos){
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+            <form method="post">
+                <input type="hidden" asp-for=Project />
+                <input type="submit" value="Select" class="btn btn-danger" />
+            </form>
+            </td>   
+            </tr>
+}
+    </tbody>
+</table>
+}
+<div>
+    <a asp-page="./Index">Volver a la lista</a>
+</div>

@@ -27,9 +27,32 @@ namespace Linked.Pages.Projects
         public IEnumerable<Technician> LoadTechnicians(){
             var db = _context;
             IEnumerable<Technician> e = Enumerable.Empty<Technician>();
+            IEnumerable<Technician> f = Enumerable.Empty<Technician>();
             try {
+                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
+                    f = f.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
+                }
                 foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
-                    if (technician.Role == Project.Role && technician.Level == Project.Level){
+                    if (technician.Role == Project.Role && technician.Level == Project.Level && !f.Contains(technician)){
+                        e = e.Append(technician);
+                    }
+                }
+            }catch{}
+            return e;
+        }
+
+        public IEnumerable<Technician> TechniciansAlternativos {get;set;}
+
+        public IEnumerable<Technician> LoadTechniciansAlternativos(){
+            var db = _context;
+            IEnumerable<Technician> e = Enumerable.Empty<Technician>();
+            IEnumerable<Technician> f = Enumerable.Empty<Technician>();
+            try {
+                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
+                    f = f.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
+                }
+                foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
+                    if (technician.Role == Project.Role && technician.Level != Project.Level && !f.Contains(technician)){
                         e = e.Append(technician);
                     }
                 }
@@ -47,6 +70,7 @@ namespace Linked.Pages.Projects
             Project = await _context.Project.FirstOrDefaultAsync(m => m.ProjectID == id);
 
             Technicians = LoadTechnicians();
+            TechniciansAlternativos = LoadTechniciansAlternativos();
 
             if (Project == null)
             {
