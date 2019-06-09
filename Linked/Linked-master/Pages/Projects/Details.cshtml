@@ -39,7 +39,7 @@
             @Html.DisplayNameFor(model => model.Project.Client)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Project.Client.Name)
+            <a asp-page="../Clients/Details" asp-route-id="@Model.Project.Client.ClientID">@Html.DisplayFor(model => model.Project.Client.Name)</a>
         </dd>
     </dl>
 </div>
