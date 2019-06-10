@@ -44,7 +44,7 @@
 </table>
 </div>
 }
-<!-- 
+
 @section Scripts 
 {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -77,6 +77,7 @@
             <td>
             <form method="post">
                 <input type="hidden" asp-for=Project />
+                <input type="hidden" name="TechnicianID" value=@item.TechnicianID />
                 <input type="submit" value="Select" class="btn btn-danger" />
             </form>
             </td>   
@@ -84,7 +85,8 @@
 }
     </tbody>
 </table>
-} -->
+}
+
 <div>
     <a asp-page="./Index">Volver a la lista</a>
 </div>
