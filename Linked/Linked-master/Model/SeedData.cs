@@ -40,10 +40,12 @@ namespace Linked.Models{
                     Role = Role.Sonidista, Level = Level.Profesional, ClientID = 4, Description = "Grabar Curso 779283 completo ", CompletionStatus = false},
                     new Project { Title = "Toy Story 5", Date = DateTime.Parse("2019-12-05"),
                     Role = Role.Director, Level = Level.Intermedio, ClientID = 5, Description = "Trailer de la Nueva Pelicula de Pixar", CompletionStatus = false},
+                    new Project { Title = "Mi Villano Favorito", Date = DateTime.Parse("2019-10-04"),
+                    Role = Role.Director, Level = Level.Intermedio, ClientID = 6, Description = "Mindstorming de la nueva Película", CompletionStatus = false},
                     new Project { Title = "Podcast con Alumnos", Date = DateTime.Parse("2019-04-06"),
-                    Role = Role.Camarógrafo, Level = Level.Básico, ClientID = 6, Description = "Entrevistas casuales acerca de la vida estudiantil en UCU", CompletionStatus = true},
+                    Role = Role.Camarógrafo, Level = Level.Básico, ClientID = 7, Description = "Entrevistas casuales acerca de la vida estudiantil en UCU", CompletionStatus = true},
                     new Project { Title = "VideoClip Musical Survivors", Date = DateTime.Parse("2019-09-07"),
-                    Role = Role.Actor, Level = Level.Avanzado, ClientID = 7, Description = "Filmar el nuevo videoclip para Survivors", CompletionStatus = false},
+                    Role = Role.Actor, Level = Level.Avanzado, ClientID = 8, Description = "Filmar el nuevo videoclip para Survivors", CompletionStatus = false},
                 };
 
                 foreach (Project p in Projects){
