@@ -7,10 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
 namespace Linked.Models{
-    public class Client{
+    public class Client : Person
+    {
         public int ClientID { get; set; }
-        public string Name { get; set; }
-
         public IList<Project> Projects { get; set; }
     }   
 }

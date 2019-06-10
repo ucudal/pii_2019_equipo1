@@ -11,7 +11,6 @@ namespace Linked.Models{
     public class FeedBack{
         public int TechnicianID { get; set; }
         public Technician Technician { get; set; }
-
         public int ScoreSheetID { get; set; }
         public ScoreSheet ScoreSheet { get; set; }
     }
