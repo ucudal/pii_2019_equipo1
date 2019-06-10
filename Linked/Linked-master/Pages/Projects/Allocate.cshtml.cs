@@ -18,24 +18,7 @@ namespace Linked.Pages.Projects{
         }
 
         public Project Project { get; set; }
-
-        /*
-        public IList<Technician> Technician {get;set;}
-
-        public async Task OnGetAsync(int? id){
-            Project = await _context.Project.FindAsync(id);
-            TechniciansAlternativos = LoadTechniciansAlternativos();
-
-            var technicians = from t in _context.Technician
-                 select t;
-
-            if (Project != null){
-                technicians = technicians.Where(tec => tec.Role.Equals(Project.Role)&&tec.Level.Equals(Project.Level));
-            }
-
-            Technician = await technicians.ToListAsync();
-        }
-        */
+        
         public async Task OnGetAsync(int? id){
             Project = await _context.Project.FindAsync(id);
             TechniciansAlternativos = LoadTechniciansAlternativos();
