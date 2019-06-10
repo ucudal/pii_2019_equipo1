@@ -1,0 +1,193 @@
+[
+  {
+    "name": "Administrator",
+    "superclasses": "Person",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Operación: Cambiar atributo ApprovedStatus en Users (clase)",
+      "Operación: Cambiar atributo ApprovedStatus en Project (clase)",
+      "Operación: Asignar Technician a Project",
+      "Operación: Modificar lista de Roles en objeto Technician"
+    ],
+    "collaborators": [
+      "User",
+      "Technician",
+      "Project"
+    ]
+  },
+  {
+    "name": "Feedback",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: lista de FeedbackItem",
+      "Conocer: TotalScore (atributo int)",
+      "Operación: Calcular TotalScore (atributo int) del proyecto"
+    ],
+    "collaborators": [
+      "FeedbackItem"
+    ]
+  },
+  {
+    "name": "FeedbackItem",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: Question (atributo : string)",
+      "Conocer: Score (atributo : string)"
+    ],
+    "collaborators": [
+      "Feedback"
+    ]
+  },
+  {
+    "name": "Project",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: HourLoad (atributo : int)",
+      "Conocer: Compensation (clase)",
+      "Conocer: Feedback (clase)",
+      "Conocer: ApprovedStatus (atributo : bool)",
+      "Conocer: CompletionStatus (atributo : bool)",
+      "Conocer: Client (clase)",
+      "Conocer: lista de Technician (clase)",
+      "Conocer: lista de Role (clase) requeridos"
+    ],
+    "collaborators": [
+      "Compensation",
+      "Feedback",
+      "Client",
+      "Technician"
+    ]
+  },
+  {
+    "name": "Compensation",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: TotalCompensation (int : atributo)",
+      "Operación: Calcular TotalCompensation"
+    ],
+    "collaborators": [
+      "Project"
+    ]
+  },
+  {
+    "name": "Role",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: Level (atributo : string)",
+      "Conocer: Description (atributo: string)"
+    ],
+    "collaborators": [
+      "Technician"
+    ]
+  },
+  {
+    "name": "User",
+    "superclasses": "Technician, Client",
+    "subclasses": "Person",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: ApprovedStatus (atributo : bool)"
+    ],
+    "collaborators": [
+      "Administrator"
+    ]
+  },
+  {
+    "name": "Client",
+    "superclasses": "",
+    "subclasses": "User",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: lista de Project (clase)",
+      "Operación: Crear Feedback (clase) y asignarlo a Project",
+      "Operación: Crear Project (clase)",
+      "Operación: Cambiar CompletionStatus (atributo de objeto Project)"
+    ],
+    "collaborators": [
+      "Project",
+      "Feedback"
+    ]
+  },
+  {
+    "name": "Technician",
+    "superclasses": "User",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: lista Projects (Clase)",
+      "Conocer: lista Roles (Clase)",
+      "Conocer: PrimaryRole (atributo : Role)"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Ranking",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Conocer: lista Technician (clase)",
+      "Operación: Devolver lista ordenada de Technician"
+    ],
+    "collaborators": [
+      "Project",
+      "Technician"
+    ]
+  },
+  {
+    "name": "Person",
+    "superclasses": "",
+    "subclasses": "User, Administrator",
+    "type": 2,
+    "responsibilities": [
+      "Conocer: Name (atributo : string)",
+      "Conocer: LastName (atributo : string)",
+      "Conocer: MailAddress (atributo : string)",
+      ""
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "Page",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Recibir input de usuario, con información para crear objetos",
+      "Enviar información a DBContext para persistir estado del programa",
+      ""
+    ],
+    "collaborators": [
+      "DBContext",
+      "clases en Model"
+    ]
+  },
+  {
+    "name": "DBContext",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Recibir mensajes de Page y clases en Model para persistir el estado del programa"
+    ],
+    "collaborators": [
+      "Page",
+      "clases en Model"
+    ]
+  }
+]

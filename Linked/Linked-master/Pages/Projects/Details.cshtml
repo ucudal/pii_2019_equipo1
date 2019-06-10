@@ -1,0 +1,78 @@
+@page
+@model Linked.Pages.Projects.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h3>Project</h3>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.CompletionStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.CompletionStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Project.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Project.Client)
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-page="../Clients/Details" asp-route-id="@Model.Project.Client.ClientID">@Html.DisplayFor(model => model.Project.Client.Name)</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Project.ProjectID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
+<hr />
+
+
+@if (Model.Technicians.Count()>0)
+{
+    <h4>Technicians</h4>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Level</th>
+        </tr>
+
+        @foreach (var item in Model.Technicians)
+        {
+            <tr>
+                <td>
+                    <a asp-page="../Technicians/Details" asp-route-id="@item.TechnicianID">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <td>
+                    @item.Role
+                </td>
+                <td>
+                    @item.Level
+                </td>
+            </tr>
+        }
+    </table>
+}
