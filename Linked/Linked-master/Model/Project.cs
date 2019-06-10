@@ -10,9 +10,22 @@ namespace Linked.Models{
 
     public class Project{
         public int ProjectID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+
+        private string title;
+        public string Title { get{return title;} 
+        set{if (!string.IsNullOrEmpty(value))
+        {title=value;}
+        } 
+        }
+
+        private string description;
+        public string Description { get{return description;} 
+        set{if (!string.IsNullOrEmpty(value))
+        {description=value;}
+        } 
+        }
         public bool CompletionStatus {get; set;}
+        
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 

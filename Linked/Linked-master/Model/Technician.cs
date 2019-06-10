@@ -9,9 +9,10 @@ using Linked.Areas.Identity.Data;
 
 namespace Linked.Models{
 
-    public class Technician {
+    public class Technician : Person
+    {
         public int TechnicianID { get; set; }
-        public string Name { get; set; }
+        
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
         
