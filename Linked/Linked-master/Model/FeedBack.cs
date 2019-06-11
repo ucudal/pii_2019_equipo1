@@ -8,7 +8,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Linked.Areas.Identity.Data;
 
 namespace Linked.Models{
-    public class FeedBack{
+    public class FeedBack
+    {
         public int TechnicianID { get; set; }
         public Technician Technician { get; set; }
         public int ScoreSheetID { get; set; }

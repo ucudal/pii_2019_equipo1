@@ -34,6 +34,7 @@ namespace Linked.Pages.Clients
             }
 
             _context.Client.Add(Client);
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

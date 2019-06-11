@@ -9,6 +9,9 @@ using System.Collections.Generic;
 namespace Linked.Models{
     public class Person{
         private string name;
+
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string Name { 
             get{
                 return name;

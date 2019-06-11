@@ -14,6 +14,8 @@ namespace Linked.Models{
         public int TechnicianID { get; set; }
         
         [DataType(DataType.Date)]
+        [Range(typeof(DateTime), "1/2/1900", "3/4/2010",
+        ErrorMessage = "Value for {0} must be between {1} and {2}")]
         public DateTime Birthday { get; set; }
         
         public Role Role { get; set; }

@@ -12,6 +12,9 @@ namespace Linked.Models{
         public int ProjectID { get; set; }
 
         private string title;
+
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string Title { get{return title;} 
         set{if (!string.IsNullOrEmpty(value))
         {title=value;}
@@ -19,6 +22,9 @@ namespace Linked.Models{
         }
 
         private string description;
+
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
         public string Description { get{return description;} 
         set{if (!string.IsNullOrEmpty(value))
         {description=value;}
@@ -26,7 +32,6 @@ namespace Linked.Models{
         }
         public bool CompletionStatus {get; set;}
         
-        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         public Role Role{ get; set; }
