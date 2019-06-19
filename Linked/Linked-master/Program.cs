@@ -24,8 +24,10 @@ namespace Linked
                     var context=services.
                         GetRequiredService<IdentityContext>();
                     context.Database.Migrate();
-                    SeedData.Initialize(services);
+
                     SeedIdentityData.Initialize(services);
+                    SeedData.Initialize(services);
+                    
                 }
                 catch (Exception ex)
                 {

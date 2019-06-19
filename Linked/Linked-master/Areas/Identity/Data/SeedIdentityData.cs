@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Linked.Models;
 
 namespace Linked.Areas.Identity.Data
 {
@@ -25,6 +26,8 @@ namespace Linked.Areas.Identity.Data
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             SeedRoles(roleManager);
             SeedUsers(userManager);
+            SeedClients(userManager,serviceProvider);
+            SeedTechnicians(userManager,serviceProvider);
         }
 
         private static void SeedUsers(UserManager<ApplicationUser> userManager)
@@ -82,6 +85,80 @@ namespace Linked.Areas.Identity.Data
             {
                 CreateRole(roleManager, roleName);
             }
+        }
+        private static void SeedClients(UserManager<ApplicationUser> userManager, IServiceProvider serviceProvider)
+        {   
+            using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
+
+                if (context.Client.Any()){
+                    return;   // DB has been seeded
+                };
+            }
+
+            for (int i = 0; i < ClientData.ClientNames.Count(); i++)
+            {
+                CreateClient(ClientData.ClientNames[i],
+                ClientData.fecha,
+                ClientData.ClientMail[i],
+                IdentityData.AdminPassword,
+                userManager);
+            }
+        }
+        private static void SeedTechnicians(UserManager<ApplicationUser> userManager, IServiceProvider serviceProvider)
+        {   
+            using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
+
+                if (context.Technician.Any()){
+                    return;   // DB has been seeded
+                };
+            }
+
+            for (int i = 0; i < TechnicianData.TechnicianNames.Count(); i++)
+            {
+                CreateTechnician(
+                TechnicianData.TechnicianNames[i],
+                TechnicianData.fechas[i],
+                TechnicianData.TechnicianMail[i],
+                IdentityData.AdminPassword,
+                TechnicianData.Roles[i],
+                TechnicianData.Niveles[i],
+                userManager);
+            }
+        }
+        private static void CreateClient(
+        string nombre,
+        DateTime fecha,
+        string correo,
+        string contraseña,
+        UserManager<ApplicationUser> userManager)
+        {
+             var user = new Client {
+                    Name = nombre,
+                    DOB = fecha,
+                    UserName = correo,
+                    Email = correo
+                };
+            var result = userManager.CreateAsync(user, contraseña);
+        }
+        private static void CreateTechnician(
+        string nombre,
+        DateTime fecha,
+        string correo,
+        string contraseña,
+        Specialty rol,
+        Level nivel,
+        UserManager<ApplicationUser> userManager)
+        {
+             var user = new Technician {
+                    Name = nombre,
+                    DOB = fecha,
+                    UserName = correo,
+                    Email = correo
+                };
+            user.Specialty=rol;
+            user.Level=nivel;
+            var result = userManager.CreateAsync(user, contraseña);
+            
         }
     }
 }
