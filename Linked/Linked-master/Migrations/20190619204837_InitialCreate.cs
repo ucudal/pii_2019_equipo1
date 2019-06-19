@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Linked.Migrations.Linked
+namespace Linked.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -11,9 +11,8 @@ namespace Linked.Migrations.Linked
                 name: "Client",
                 columns: table => new
                 {
-                    ClientID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true)
+                    ClientID = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 60, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,14 +23,13 @@ namespace Linked.Migrations.Linked
                 name: "ScoreSheet",
                 columns: table => new
                 {
-                    ScoreSheetID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    ScoreSheetID = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Puntualidad = table.Column<int>(nullable: false),
-                    Respeto = table.Column<int>(nullable: false),
-                    Formalidad = table.Column<int>(nullable: false),
-                    Profesionalismo = table.Column<int>(nullable: false),
-                    Compromiso = table.Column<int>(nullable: false)
+                    Puntualidad = table.Column<int>(maxLength: 2, nullable: false),
+                    Respeto = table.Column<int>(maxLength: 2, nullable: false),
+                    Formalidad = table.Column<int>(maxLength: 2, nullable: false),
+                    Profesionalismo = table.Column<int>(maxLength: 2, nullable: false),
+                    Compromiso = table.Column<int>(maxLength: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,11 +40,10 @@ namespace Linked.Migrations.Linked
                 name: "Technician",
                 columns: table => new
                 {
-                    TechnicianID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true),
+                    TechnicianID = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 60, nullable: false),
                     Birthday = table.Column<DateTime>(nullable: false),
-                    Role = table.Column<int>(nullable: false),
+                    Specialty = table.Column<int>(nullable: false),
                     Level = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -58,15 +55,14 @@ namespace Linked.Migrations.Linked
                 name: "Project",
                 columns: table => new
                 {
-                    ProjectID = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
+                    ProjectID = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(maxLength: 60, nullable: false),
+                    Description = table.Column<string>(maxLength: 60, nullable: false),
                     CompletionStatus = table.Column<bool>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Role = table.Column<int>(nullable: false),
+                    Specialty = table.Column<int>(nullable: false),
                     Level = table.Column<int>(nullable: false),
-                    ClientID = table.Column<int>(nullable: false)
+                    ClientID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -76,15 +72,15 @@ namespace Linked.Migrations.Linked
                         column: x => x.ClientID,
                         principalTable: "Client",
                         principalColumn: "ClientID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "FeedBack",
                 columns: table => new
                 {
-                    TechnicianID = table.Column<int>(nullable: false),
-                    ScoreSheetID = table.Column<int>(nullable: false)
+                    TechnicianID = table.Column<string>(nullable: false),
+                    ScoreSheetID = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -107,8 +103,8 @@ namespace Linked.Migrations.Linked
                 name: "Employ",
                 columns: table => new
                 {
-                    TechnicianID = table.Column<int>(nullable: false),
-                    ProjectID = table.Column<int>(nullable: false)
+                    TechnicianID = table.Column<string>(nullable: false),
+                    ProjectID = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

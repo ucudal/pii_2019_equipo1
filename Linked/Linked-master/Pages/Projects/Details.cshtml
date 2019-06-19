@@ -56,7 +56,7 @@
     <table class="table">
         <tr>
             <th>Name</th>
-            <th>Role</th>
+            <th>Specialty</th>
             <th>Level</th>
         </tr>
 
@@ -67,7 +67,7 @@
                     <a asp-page="../Technicians/Details" asp-route-id="@item.TechnicianID">@Html.DisplayFor(modelItem => item.Name)</a>
                 </td>
                 <td>
-                    @item.Role
+                    @item.Specialty
                 </td>
                 <td>
                     @item.Level

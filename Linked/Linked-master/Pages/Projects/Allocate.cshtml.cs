@@ -19,7 +19,7 @@ namespace Linked.Pages.Projects{
 
         public Project Project { get; set; }
         
-        public async Task OnGetAsync(int? id){
+        public async Task OnGetAsync(string id){
             Project = await _context.Project.FindAsync(id);
             TechniciansAlternativos = LoadTechniciansAlternativos();
             Technician = LoadTechnicians();
@@ -38,7 +38,7 @@ namespace Linked.Pages.Projects{
                     f = f.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
                 }
                 foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
-                    if (technician.Role == Project.Role && technician.Level != Project.Level && !f.Contains(technician)){
+                    if (technician.Specialty == Project.Specialty && technician.Level != Project.Level && !f.Contains(technician)){
                         e = e.Append(technician);
                     }
                 }
@@ -55,7 +55,7 @@ namespace Linked.Pages.Projects{
                     f = f.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
                 }
                 foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
-                    if (technician.Role == Project.Role && technician.Level == Project.Level && !f.Contains(technician)){
+                    if (technician.Specialty == Project.Specialty && technician.Level == Project.Level && !f.Contains(technician)){
                         e = e.Append(technician);
                     }
                 }
@@ -63,7 +63,7 @@ namespace Linked.Pages.Projects{
             return e;
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             if (id == null)
             {
@@ -71,8 +71,9 @@ namespace Linked.Pages.Projects{
             }
 
             Project = await _context.Project.FindAsync(id);
-            String TechId = Request.Form["TechnicianID"];
-            int ParsedTechId = int.Parse(TechId);
+            string TechId = Request.Form["TechnicianID"];
+            //string ParsedTechId = string.Parse(TechId);
+            string ParsedTechId = TechId;
             TechnicianSelected = await _context.Technician.FindAsync(ParsedTechId);
 
             if (Project != null)

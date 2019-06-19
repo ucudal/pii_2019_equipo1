@@ -20,7 +20,7 @@ namespace Linked.Pages.ScoreSheets
 
         public ScoreSheet ScoreSheet { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {

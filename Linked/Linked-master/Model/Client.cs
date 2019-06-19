@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Linked.Models{
     public class Client : Person
     {
-        public int ClientID { get; set; }
+        public string ClientID { get; set; }
         public IList<Project> Projects { get; set; }
     }   
 }

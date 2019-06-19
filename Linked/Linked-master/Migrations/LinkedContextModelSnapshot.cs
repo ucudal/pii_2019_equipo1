@@ -3,16 +3,14 @@ using System;
 using Linked.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Linked.Migrations.Linked
+namespace Linked.Migrations
 {
     [DbContext(typeof(LinkedContext))]
-    [Migration("20190609223856_InitialCreate")]
-    partial class InitialCreate
+    partial class LinkedContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,10 +18,12 @@ namespace Linked.Migrations.Linked
 
             modelBuilder.Entity("Linked.Models.Client", b =>
                 {
-                    b.Property<int>("ClientID")
+                    b.Property<string>("ClientID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.HasKey("ClientID");
 
@@ -32,9 +32,9 @@ namespace Linked.Migrations.Linked
 
             modelBuilder.Entity("Linked.Models.Employ", b =>
                 {
-                    b.Property<int>("TechnicianID");
+                    b.Property<string>("TechnicianID");
 
-                    b.Property<int>("ProjectID");
+                    b.Property<string>("ProjectID");
 
                     b.HasKey("TechnicianID", "ProjectID");
 
@@ -45,9 +45,9 @@ namespace Linked.Migrations.Linked
 
             modelBuilder.Entity("Linked.Models.FeedBack", b =>
                 {
-                    b.Property<int>("TechnicianID");
+                    b.Property<string>("TechnicianID");
 
-                    b.Property<int>("ScoreSheetID");
+                    b.Property<string>("ScoreSheetID");
 
                     b.HasKey("TechnicianID", "ScoreSheetID");
 
@@ -59,22 +59,26 @@ namespace Linked.Migrations.Linked
 
             modelBuilder.Entity("Linked.Models.Project", b =>
                 {
-                    b.Property<int>("ProjectID")
+                    b.Property<string>("ProjectID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ClientID");
+                    b.Property<string>("ClientID");
 
                     b.Property<bool>("CompletionStatus");
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.Property<int>("Level");
 
-                    b.Property<int>("Role");
+                    b.Property<int>("Specialty");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
                     b.HasKey("ProjectID");
 
@@ -85,20 +89,25 @@ namespace Linked.Migrations.Linked
 
             modelBuilder.Entity("Linked.Models.ScoreSheet", b =>
                 {
-                    b.Property<int>("ScoreSheetID")
+                    b.Property<string>("ScoreSheetID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Compromiso");
+                    b.Property<int>("Compromiso")
+                        .HasMaxLength(2);
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int>("Formalidad");
+                    b.Property<int>("Formalidad")
+                        .HasMaxLength(2);
 
-                    b.Property<int>("Profesionalismo");
+                    b.Property<int>("Profesionalismo")
+                        .HasMaxLength(2);
 
-                    b.Property<int>("Puntualidad");
+                    b.Property<int>("Puntualidad")
+                        .HasMaxLength(2);
 
-                    b.Property<int>("Respeto");
+                    b.Property<int>("Respeto")
+                        .HasMaxLength(2);
 
                     b.HasKey("ScoreSheetID");
 
@@ -107,16 +116,18 @@ namespace Linked.Migrations.Linked
 
             modelBuilder.Entity("Linked.Models.Technician", b =>
                 {
-                    b.Property<int>("TechnicianID")
+                    b.Property<string>("TechnicianID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Birthday");
 
                     b.Property<int>("Level");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(60);
 
-                    b.Property<int>("Role");
+                    b.Property<int>("Specialty");
 
                     b.HasKey("TechnicianID");
 
@@ -153,8 +164,7 @@ namespace Linked.Migrations.Linked
                 {
                     b.HasOne("Linked.Models.Client", "Client")
                         .WithMany("Projects")
-                        .HasForeignKey("ClientID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ClientID");
                 });
 #pragma warning restore 612, 618
         }

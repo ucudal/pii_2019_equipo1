@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Linked.Models{
     public class ScoreSheet{
-        public int ScoreSheetID { get; set; }
+        public string ScoreSheetID { get; set; }
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 

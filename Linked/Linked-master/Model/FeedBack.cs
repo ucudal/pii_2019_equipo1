@@ -10,9 +10,9 @@ using Linked.Areas.Identity.Data;
 namespace Linked.Models{
     public class FeedBack
     {
-        public int TechnicianID { get; set; }
+        public string TechnicianID { get; set; }
         public Technician Technician { get; set; }
-        public int ScoreSheetID { get; set; }
+        public string ScoreSheetID { get; set; }
         public ScoreSheet ScoreSheet { get; set; }
     }
 }

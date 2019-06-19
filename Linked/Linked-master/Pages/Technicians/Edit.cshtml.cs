@@ -22,7 +22,7 @@ namespace Linked.Pages.Technicians
         [BindProperty]
         public Technician Technician { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Linked.Pages.Technicians
             return RedirectToPage("./Index");
         }
 
-        private bool TechnicianExists(int id)
+        private bool TechnicianExists(string id)
         {
             return _context.Technician.Any(e => e.TechnicianID == id);
         }

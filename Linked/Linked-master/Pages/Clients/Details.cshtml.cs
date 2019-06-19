@@ -26,7 +26,7 @@ namespace Linked.Pages.Clients
             return db.Project.Where(p=>p.ClientID == Client.ClientID).AsEnumerable();
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {

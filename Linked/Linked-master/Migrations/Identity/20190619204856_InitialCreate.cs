@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Linked.Migrations
+namespace Linked.Migrations.Identity
 {
     public partial class InitialCreate : Migration
     {

@@ -21,7 +21,7 @@ namespace Linked.Pages.ScoreSheets
         [BindProperty]
         public ScoreSheet ScoreSheet { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -37,7 +37,7 @@ namespace Linked.Pages.ScoreSheets
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             if (id == null)
             {

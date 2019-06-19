@@ -1,7 +1,7 @@
 using System; 
 
 namespace Linked.Models {
-    public enum Role {
+    public enum Specialty {
         Director, Actor, Camarógrafo, Fotógrafo, Sonidista
     }
     public enum Level {
