@@ -7,9 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using Linked.Areas.Identity.Data;
 
+
 namespace Linked.Models{
 
-    public class Technician : Person
+    public class Technician : ApplicationUser
     {
         public string TechnicianID { get; set; }
         

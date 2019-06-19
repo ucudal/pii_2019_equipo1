@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
+using Linked.Areas.Identity.Data;
 
 namespace Linked.Pages.Clients
 {
     public class CreateModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public CreateModel(Linked.Models.LinkedContext context)
+        public CreateModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Linked.Areas.Identity.Data;
+using Linked.Models;
 
 namespace Linked.Areas.Identity.Data
 {
@@ -15,13 +16,24 @@ namespace Linked.Areas.Identity.Data
             : base(options)
         {
         }
+                //public DbSet<Linked.Models.FeedBack> FeedBack { get; set; }
+        
+        public DbSet<Linked.Models.Project> Project { get; set; }
+        public DbSet<Linked.Models.Technician> Technician { get; set; }
+        public DbSet<Linked.Models.ScoreSheet> ScoreSheet { get; set; }
+        public DbSet<Linked.Models.Client> Client { get; set; }
+        
+        public DbSet<Employ> Employ { get; set; }
+        public DbSet<FeedBack> FeedBack { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder){
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Employ>().ToTable("Employ")
+                .HasKey(e => new { e.TechnicianID, e.ProjectID });
+            
+            modelBuilder.Entity<FeedBack>().ToTable("FeedBack")
+                .HasKey(f => new { f.TechnicianID, f.ScoreSheetID});
         }
     }
 }

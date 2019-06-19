@@ -5,9 +5,10 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using Linked.Areas.Identity.Data;
 
 namespace Linked.Models{
-    public class Client : Person
+    public class Client : ApplicationUser
     {
         public string ClientID { get; set; }
         public IList<Project> Projects { get; set; }

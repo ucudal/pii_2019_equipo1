@@ -11,9 +11,9 @@ using Linked.Areas.Identity.Data;
 
 namespace Linked.Pages.Projects{
     public class AllocateModel : PageModel{
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public AllocateModel(Linked.Models.LinkedContext context){
+        public AllocateModel(Linked.Areas.Identity.Data.IdentityContext context){
             _context = context;
         }
 

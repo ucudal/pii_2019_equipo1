@@ -12,9 +12,9 @@ namespace Linked.Pages.Clients
 {
     public class EditModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public EditModel(Linked.Models.LinkedContext context)
+        public EditModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }

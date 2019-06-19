@@ -7,7 +7,7 @@ namespace Linked.Models{
     public static class SeedData{
         public static void Initialize(IServiceProvider serviceProvider){
 
-            // using (var context = new LinkedContext(serviceProvider.GetRequiredService<DbContextOptions<LinkedContext>>())){
+            // using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
 
             //     if (context.Project.Any()){
             //         return;   // DB has been seeded

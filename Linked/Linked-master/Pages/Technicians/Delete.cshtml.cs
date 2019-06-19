@@ -11,9 +11,9 @@ namespace Linked.Pages.Technicians
 {
     public class DeleteModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public DeleteModel(Linked.Models.LinkedContext context)
+        public DeleteModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }

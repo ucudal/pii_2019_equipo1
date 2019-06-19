@@ -3,16 +3,14 @@ using System;
 using Linked.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Linked.Migrations.Identity
+namespace Linked.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190619204856_InitialCreate")]
-    partial class InitialCreate
+    partial class IdentityContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +27,9 @@ namespace Linked.Migrations.Identity
                         .IsConcurrencyToken();
 
                     b.Property<DateTime>("DOB");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -72,6 +73,92 @@ namespace Linked.Migrations.Identity
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Linked.Models.Employ", b =>
+                {
+                    b.Property<string>("TechnicianID");
+
+                    b.Property<string>("ProjectID");
+
+                    b.HasKey("TechnicianID", "ProjectID");
+
+                    b.HasAlternateKey("ProjectID", "TechnicianID");
+
+                    b.ToTable("Employ");
+                });
+
+            modelBuilder.Entity("Linked.Models.FeedBack", b =>
+                {
+                    b.Property<string>("TechnicianID");
+
+                    b.Property<string>("ScoreSheetID");
+
+                    b.HasKey("TechnicianID", "ScoreSheetID");
+
+                    b.HasIndex("ScoreSheetID")
+                        .IsUnique();
+
+                    b.ToTable("FeedBack");
+                });
+
+            modelBuilder.Entity("Linked.Models.Project", b =>
+                {
+                    b.Property<string>("ProjectID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ClientID");
+
+                    b.Property<bool>("CompletionStatus");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.Property<int>("Level");
+
+                    b.Property<int>("Specialty");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60);
+
+                    b.HasKey("ProjectID");
+
+                    b.HasIndex("ClientID");
+
+                    b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("Linked.Models.ScoreSheet", b =>
+                {
+                    b.Property<string>("ScoreSheetID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Compromiso")
+                        .HasMaxLength(2);
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int>("Formalidad")
+                        .HasMaxLength(2);
+
+                    b.Property<int>("Profesionalismo")
+                        .HasMaxLength(2);
+
+                    b.Property<int>("Puntualidad")
+                        .HasMaxLength(2);
+
+                    b.Property<int>("Respeto")
+                        .HasMaxLength(2);
+
+                    b.HasKey("ScoreSheetID");
+
+                    b.ToTable("ScoreSheet");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -183,6 +270,63 @@ namespace Linked.Migrations.Identity
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Linked.Models.Client", b =>
+                {
+                    b.HasBaseType("Linked.Areas.Identity.Data.ApplicationUser");
+
+                    b.Property<string>("ClientID");
+
+                    b.HasDiscriminator().HasValue("Client");
+                });
+
+            modelBuilder.Entity("Linked.Models.Technician", b =>
+                {
+                    b.HasBaseType("Linked.Areas.Identity.Data.ApplicationUser");
+
+                    b.Property<DateTime>("Birthday");
+
+                    b.Property<int>("Level");
+
+                    b.Property<int>("Specialty");
+
+                    b.Property<string>("TechnicianID");
+
+                    b.HasDiscriminator().HasValue("Technician");
+                });
+
+            modelBuilder.Entity("Linked.Models.Employ", b =>
+                {
+                    b.HasOne("Linked.Models.Project", "Project")
+                        .WithMany("Employees")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Linked.Models.Technician", "Technician")
+                        .WithMany("Employers")
+                        .HasForeignKey("TechnicianID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Linked.Models.FeedBack", b =>
+                {
+                    b.HasOne("Linked.Models.ScoreSheet", "ScoreSheet")
+                        .WithOne("FeedBack")
+                        .HasForeignKey("Linked.Models.FeedBack", "ScoreSheetID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Linked.Models.Technician", "Technician")
+                        .WithMany("FeedBacks")
+                        .HasForeignKey("TechnicianID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Linked.Models.Project", b =>
+                {
+                    b.HasOne("Linked.Models.Client", "Client")
+                        .WithMany("Projects")
+                        .HasForeignKey("ClientID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
