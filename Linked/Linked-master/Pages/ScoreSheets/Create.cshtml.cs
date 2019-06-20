@@ -11,9 +11,9 @@ namespace Linked.Pages.ScoreSheets
 {
     public class CreateModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public CreateModel(Linked.Models.LinkedContext context)
+        public CreateModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }

@@ -9,10 +9,10 @@ using System.Collections.Generic;
 namespace Linked.Models{
     public class Employ{
         [Key]
-        public int TechnicianID { get; set; }
+        public string TechnicianID { get; set; }
 
         [Key]
-        public int  ProjectID { get; set; }
+        public string  ProjectID { get; set; }
 
         [Required]
         public Technician Technician { get; set; }

@@ -7,18 +7,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using Linked.Areas.Identity.Data;
 
+
 namespace Linked.Models{
 
-    public class Technician : Person
+    public class Technician : ApplicationUser
     {
-        public int TechnicianID { get; set; }
+        public string TechnicianID { get; set; }
         
         [DataType(DataType.Date)]
-        [Range(typeof(DateTime), "1/2/1900", "3/4/2010",
-        ErrorMessage = "Value for {0} must be between {1} and {2}")]
+        //[Range(typeof(DateTime),"3/4/2010","1/2/1900",
+        //ErrorMessage = "Value for {0} must be between {1} and {2}")]
         public DateTime Birthday { get; set; }
         
-        public Role Role { get; set; }
+        public Specialty Specialty { get; set; }
         public Level Level { get; set; }
 
         public List<FeedBack> FeedBacks { get; set; } //Feedbacks

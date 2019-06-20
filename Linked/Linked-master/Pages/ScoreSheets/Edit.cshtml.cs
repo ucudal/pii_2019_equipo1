@@ -12,9 +12,9 @@ namespace Linked.Pages.ScoreSheets
 {
     public class EditModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public EditModel(Linked.Models.LinkedContext context)
+        public EditModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Linked.Pages.ScoreSheets
         [BindProperty]
         public ScoreSheet ScoreSheet { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Linked.Pages.ScoreSheets
             return RedirectToPage("./Index");
         }
 
-        private bool ScoreSheetExists(int id)
+        private bool ScoreSheetExists(string id)
         {
             return _context.ScoreSheet.Any(e => e.ScoreSheetID == id);
         }

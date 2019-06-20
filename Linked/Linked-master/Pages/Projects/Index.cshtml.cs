@@ -11,9 +11,9 @@ namespace Linked.Pages.Projects
 {
     public class IndexModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public IndexModel(Linked.Models.LinkedContext context)
+        public IndexModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }

@@ -11,9 +11,9 @@ namespace Linked.Pages.Projects
 {
     public class DetailsModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public DetailsModel(Linked.Models.LinkedContext context)
+        public DetailsModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
@@ -33,7 +33,7 @@ namespace Linked.Pages.Projects
             return e;
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {

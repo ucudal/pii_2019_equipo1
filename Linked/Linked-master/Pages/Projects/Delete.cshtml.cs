@@ -11,9 +11,9 @@ namespace Linked.Pages.Projects
 {
     public class DeleteModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public DeleteModel(Linked.Models.LinkedContext context)
+        public DeleteModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace Linked.Pages.Projects
         [BindProperty]
         public Project Project { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -38,7 +38,7 @@ namespace Linked.Pages.Projects
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             if (id == null)
             {

@@ -22,10 +22,12 @@ namespace Linked
                 try
                 {
                     var context=services.
-                        GetRequiredService<LinkedContext>();
+                        GetRequiredService<IdentityContext>();
                     context.Database.Migrate();
-                    SeedData.Initialize(services);
+
                     SeedIdentityData.Initialize(services);
+                    SeedData.Initialize(services);
+                    
                 }
                 catch (Exception ex)
                 {

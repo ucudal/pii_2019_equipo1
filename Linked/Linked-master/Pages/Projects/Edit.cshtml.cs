@@ -12,9 +12,9 @@ namespace Linked.Pages.Projects
 {
     public class EditModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public EditModel(Linked.Models.LinkedContext context)
+        public EditModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Linked.Pages.Projects
         [BindProperty]
         public Project Project { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -68,7 +68,7 @@ namespace Linked.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-        private bool ProjectExists(int id)
+        private bool ProjectExists(string id)
         {
             return _context.Project.Any(e => e.ProjectID == id);
         }

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Linked.Models{
 
     public class Project{
-        public int ProjectID { get; set; }
+        public string ProjectID { get; set; }
 
         private string title;
 
@@ -34,14 +34,14 @@ namespace Linked.Models{
         
         public DateTime Date { get; set; }
 
-        public Role Role{ get; set; }
-        //public Role Role;
+        public Specialty Specialty{ get; set; }
+        //public Specialty Specialty;
         public Level Level{ get; set; }
         //public Level Level;
         
         public IList<Employ> Employees { get; set; } // Technicians
 
-        public int ClientID { get; set; } 
+        public string ClientID { get; set; } 
         public Client Client { get; set; }
     }   
 }

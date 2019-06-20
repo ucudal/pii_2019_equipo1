@@ -12,9 +12,9 @@ namespace Linked.Pages.Clients
 {
     public class EditModel : PageModel
     {
-        private readonly Linked.Models.LinkedContext _context;
+        private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public EditModel(Linked.Models.LinkedContext context)
+        public EditModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Linked.Pages.Clients
         [BindProperty]
         public Client Client { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Linked.Pages.Clients
             return RedirectToPage("./Index");
         }
 
-        private bool ClientExists(int id)
+        private bool ClientExists(string id)
         {
             return _context.Client.Any(e => e.ClientID == id);
         }

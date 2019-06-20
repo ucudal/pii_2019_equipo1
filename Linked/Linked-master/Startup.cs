@@ -36,15 +36,15 @@ namespace Linked
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<LinkedContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("LinkedContext")));
+            services.AddDbContext<IdentityContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("IdentityContext")));
 
             // Fix error More than one DbContext named 'LinkedIdentityDbContext' was found Specify which one to use by providing
             // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m ApplicationUser
             // -dc Linked.Areas.Identity.Data.LinkedIdentityDbContext -udl -outDir Areas\Identity\Pages\ApplicationUsers
             // --referenceScriptLibraries
             services.AddDbContext<IdentityContext>(options =>
-                 options.UseSqlite(Configuration.GetConnectionString("LinkedContext")));
+                 options.UseSqlite(Configuration.GetConnectionString("IdentityContext")));
 
             services.AddMvc(config =>
             {
