@@ -12,7 +12,7 @@ namespace Linked.Models{
 
     public class Technician : ApplicationUser
     {
-        public string TechnicianID { get; set; }
+        public string TechnicianID { get{return this.Id;}}
         
         [DataType(DataType.Date)]
         //[Range(typeof(DateTime),"3/4/2010","1/2/1900",
