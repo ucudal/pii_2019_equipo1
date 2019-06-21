@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Linked.Areas.Identity.Data;
+using RazorPagesMovie.Areas.Identity.Data;
 
-namespace Linked.Areas.Identity.Pages.Account
+namespace RazorPagesMovie.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel

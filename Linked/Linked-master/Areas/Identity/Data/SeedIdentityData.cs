@@ -5,18 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Linked.Models;
 
-namespace Linked.Areas.Identity.Data
+namespace RazorPagesMovie.Areas.Identity.Data
 {
     /// <summary>
-    /// Inicializa en la base de datos de identidad los usuarios y roles necesarios para el funcionamiento de la aplicaci�n
+    /// Inicializa en la base de datos de identidad los usuarios y roles necesarios para el funcionamiento de la aplicación
     /// la primera vez que se ejecuta.
     /// </summary>
     public static class SeedIdentityData
     {
         /// <summary>
-        /// Crea los usuarios y roles necesarios para el funcionamiento de la aplicaci�n si ya no existente.
+        /// Crea los usuarios y roles necesarios para el funcionamiento de la aplicación si ya no existente.
         /// </summary>
         /// <param name="serviceProvider">El <see cref="IServiceProvider"/> al que se han injectado previamente un
         /// <see cref="UserManager<T>"/> y un <see cref="RoleManager<T>"/>.</param>
@@ -26,13 +25,11 @@ namespace Linked.Areas.Identity.Data
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             SeedRoles(roleManager);
             SeedUsers(userManager);
-            SeedClients(userManager,serviceProvider);
-            SeedTechnicians(userManager,serviceProvider);
         }
 
         private static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
-            // Crea el primer y �nico administrador si no existe. Primero crea un usuario y luego se asigna el rol de adminstrador.
+            // Crea el primer y único administrador si no existe. Primero crea un usuario y luego se asigna el rol de adminstrador.
             if (userManager.FindByNameAsync(IdentityData.AdminUserName).Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
@@ -85,80 +82,6 @@ namespace Linked.Areas.Identity.Data
             {
                 CreateRole(roleManager, roleName);
             }
-        }
-        private static void SeedClients(UserManager<ApplicationUser> userManager, IServiceProvider serviceProvider)
-        {   
-            using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.Client.Any()){
-                    return;   // DB has been seeded
-                };
-            }
-
-            for (int i = 0; i < ClientData.ClientNames.Count(); i++)
-            {
-                CreateClient(ClientData.ClientNames[i],
-                ClientData.fecha,
-                ClientData.ClientMail[i],
-                IdentityData.AdminPassword,
-                userManager);
-            }
-        }
-        private static void SeedTechnicians(UserManager<ApplicationUser> userManager, IServiceProvider serviceProvider)
-        {   
-            using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.Technician.Any()){
-                    return;   // DB has been seeded
-                };
-            }
-
-            for (int i = 0; i < TechnicianData.TechnicianNames.Count(); i++)
-            {
-                CreateTechnician(
-                TechnicianData.TechnicianNames[i],
-                TechnicianData.fechas[i],
-                TechnicianData.TechnicianMail[i],
-                IdentityData.AdminPassword,
-                TechnicianData.Roles[i],
-                TechnicianData.Niveles[i],
-                userManager);
-            }
-        }
-        private static void CreateClient(
-        string nombre,
-        DateTime fecha,
-        string correo,
-        string contraseña,
-        UserManager<ApplicationUser> userManager)
-        {
-             var user = new Client {
-                    Name = nombre,
-                    DOB = fecha,
-                    UserName = correo,
-                    Email = correo
-                };
-            var result = userManager.CreateAsync(user, contraseña);
-        }
-        private static void CreateTechnician(
-        string nombre,
-        DateTime fecha,
-        string correo,
-        string contraseña,
-        Specialty rol,
-        Level nivel,
-        UserManager<ApplicationUser> userManager)
-        {
-             var user = new Technician {
-                    Name = nombre,
-                    DOB = fecha,
-                    UserName = correo,
-                    Email = correo
-                };
-            user.Specialty=rol;
-            user.Level=nivel;
-            var result = userManager.CreateAsync(user, contraseña);
-            
         }
     }
 }

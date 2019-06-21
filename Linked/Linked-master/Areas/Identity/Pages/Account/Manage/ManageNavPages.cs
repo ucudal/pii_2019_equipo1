@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Linked.Areas.Identity.Pages.Account.Manage
+namespace RazorPagesMovie.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {

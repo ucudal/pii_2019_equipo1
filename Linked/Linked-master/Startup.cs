@@ -1,21 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Linked.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Authorization;
-using Linked.Areas.Identity.Data;
+using RazorPagesMovie.Models;
 
-namespace Linked
+namespace RazorPagesMovie
 {
     public class Startup
     {
@@ -36,15 +30,8 @@ namespace Linked
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<IdentityContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("IdentityContext")));
-
-            // Fix error More than one DbContext named 'LinkedIdentityDbContext' was found Specify which one to use by providing
-            // its fully qualified name using exact case when running dotnet aspnet-codegenerator razorpage -m ApplicationUser
-            // -dc Linked.Areas.Identity.Data.LinkedIdentityDbContext -udl -outDir Areas\Identity\Pages\ApplicationUsers
-            // --referenceScriptLibraries
-            services.AddDbContext<IdentityContext>(options =>
-                 options.UseSqlite(Configuration.GetConnectionString("IdentityContext")));
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("MovieContext")));
 
             services.AddMvc(config =>
             {

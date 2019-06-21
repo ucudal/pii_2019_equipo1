@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Linked.Models;
+using RazorPagesMovie.Models;
 using System;
 using Microsoft.EntityFrameworkCore;
-using Linked.Areas.Identity.Data;
+using RazorPagesMovie.Areas.Identity.Data;
 
-namespace Linked
+namespace RazorPagesMovie
 {
     public class Program
     {
@@ -22,12 +22,10 @@ namespace Linked
                 try
                 {
                     var context=services.
-                        GetRequiredService<IdentityContext>();
+                        GetRequiredService<ApplicationContext>();
                     context.Database.Migrate();
-
-                    SeedIdentityData.Initialize(services);
                     SeedData.Initialize(services);
-                    
+                    SeedIdentityData.Initialize(services);
                 }
                 catch (Exception ex)
                 {

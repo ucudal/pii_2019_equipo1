@@ -2,161 +2,248 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
-using Linked.Areas.Identity.Data;
 
-namespace Linked.Models{
-    public static class SeedData{
+namespace RazorPagesMovie.Models
+{
+    public static class SeedData
+    {
+
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            SeedProjects(serviceProvider);
-            SeedEmploys(serviceProvider);
-            SeedScoreSheets(serviceProvider);
-            SeedFeedbacks(serviceProvider);            
+            using (var context = new ApplicationContext(
+                serviceProvider.GetRequiredService<
+                    DbContextOptions<ApplicationContext>>()))
+            {
+                SeedActors(context);
+                SeedMovies(context);
+                SeedAppereances(context);
+                SeedLocations(context);
+            }
         }
-                
 
-            public static void SeedProjects(IServiceProvider serviceProvider)
+        private static void SeedMovies(ApplicationContext context)
+        {
+            // Look for any movies.
+            if (context.Movies.Any())
             {
-                using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.Project.Any()){
-                    return;   // DB has been seeded
-                };
-
-                var Projects = new Project[]{
-                    new Project { Title = "Reclame UCU Enseña", Date = DateTime.Parse("2019-02-01"), 
-                    Specialty = Specialty.Director, Level = Level.Avanzado, Description = "Reclame de 5 minutos",CompletionStatus = false},
-                    new Project { Title = "Propaganda Copa América", Date = DateTime.Parse("2019-03-02"),
-                    Specialty = Specialty.Actor, Level = Level.Básico, Description = "Titulares y Highlights de la Copa 2015", CompletionStatus = false},
-                    new Project { Title = "Kung Fu Panda 5", Date = DateTime.Parse("2019-07-03"),
-                    Specialty = Specialty.Camarógrafo, Level = Level.Intermedio, Description = "Trailer de la nueva Película", CompletionStatus = false},
-                    new Project { Title = "Open Fing Clases", Date = DateTime.Parse("2019-11-04"),
-                    Specialty = Specialty.Sonidista, Level = Level.Profesional, Description = "Grabar Curso 779283 completo ", CompletionStatus = false},
-                    new Project { Title = "Toy Story 5", Date = DateTime.Parse("2019-12-05"),
-                    Specialty = Specialty.Director, Level = Level.Intermedio, Description = "Trailer de la Nueva Pelicula de Pixar", CompletionStatus = false},
-                    new Project { Title = "Mi Villano Favorito", Date = DateTime.Parse("2019-10-04"),
-                    Specialty = Specialty.Director, Level = Level.Intermedio, Description = "Mindstorming de la nueva Película", CompletionStatus = false},
-                    new Project { Title = "Podcast con Alumnos", Date = DateTime.Parse("2019-04-06"),
-                    Specialty = Specialty.Camarógrafo, Level = Level.Básico, Description = "Entrevistas casuales acerca de la vida estudiantil en UCU", CompletionStatus = true},
-                    new Project { Title = "VideoClip Musical Survivors", Date = DateTime.Parse("2019-09-07"),
-                    Specialty = Specialty.Actor, Level = Level.Avanzado, Description = "Filmar el nuevo videoclip para Survivors", CompletionStatus = false},
-                };
-
-                foreach (Project p in Projects){
-                    Client query = context.Client
-                       .Where(s => s.Name == "ESPN")
-                       .FirstOrDefault<Client>();
-                    p.Client=query;
-                    p.ClientID=query.ClientID;
-                    context.Project.Add(p);
-                };
-                context.SaveChanges();
-
-            }
+                return;   // DB has been seeded
             }
 
-            public static void SeedEmploys(IServiceProvider serviceProvider)
-            {
-                using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
+            context.Movies.AddRange(
+                new Movie
+                {
+                    Title = "When Harry Met Sally",
+                    ReleaseDate = DateTime.Parse("1989-2-12"),
+                    Genre = "Romantic Comedy",
+                    Price = 7.99M,
+                    Rating = "R"
+                },
 
-                if (context.Employ.Any()){
-                    return;   // DB has been seeded
-                };
+                new Movie
+                {
+                    Title = "Ghostbusters",
+                    ReleaseDate = DateTime.Parse("1984-3-13"),
+                    Genre = "Comedy",
+                    Price = 8.99M,
+                    Rating = "R"
+                },
 
-                Technician QueryTechnician = context.Technician
-                    .Where(s => s.Name == "Rodrigo Kan")
-                    .FirstOrDefault<Technician>();
+                new Movie
+                {
+                    Title = "Ghostbusters 2",
+                    ReleaseDate = DateTime.Parse("1986-2-23"),
+                    Genre = "Comedy",
+                    Price = 9.99M,
+                    Rating = "R"
+                },
 
-                Project QueryProject = context.Project
-                    .Where(s => s.Title == "Toy Story 5")
-                    .FirstOrDefault<Project>();                
-
-                var Employs = new Employ[]{
-
-                    new Employ{
-
-                        Project=QueryProject,
-                        Technician=QueryTechnician,
-                        TechnicianID = QueryTechnician.TechnicianID,
-                        ProjectID = QueryProject.ProjectID,
-                    }
-                };
-
-                foreach (Employ e in Employs){
-                    
-                    context.Employ.Add(e);
+                new Movie
+                {
+                    Title = "Rio Bravo",
+                    ReleaseDate = DateTime.Parse("1959-4-15"),
+                    Genre = "Western",
+                    Price = 3.99M,
+                    Rating = "R"
                 }
-                context.SaveChanges();
+            );
+            context.SaveChanges();
+        }
 
-            }
-            }
-
-            public static void SeedScoreSheets(IServiceProvider serviceProvider)
+        private static void SeedActors(ApplicationContext context)
+        {
+            // Look for any actor.
+            if (context.Actors.Any())
             {
-                using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.ScoreSheet.Any()){
-                    return;   // DB has been seeded
-                };
-                    var ScoreSheets = new ScoreSheet[]{
-                    new ScoreSheet {
-                    Date = DateTime.Now,
-                    Compromiso = 2,
-                    Puntualidad = 8,
-                    Formalidad = 9,
-                    Respeto = 9,
-                    Profesionalismo = 8},       
-                };
-
-                foreach (ScoreSheet sc in ScoreSheets){
-                    context.ScoreSheet.Add(sc);
-                };
-                context.SaveChanges();       
-            }
+                return;   // DB has been seeded
             }
 
-            public static void SeedFeedbacks(IServiceProvider serviceProvider)
+            context.Actors.AddRange(
+                new Actor
+                {
+                    Name = "Billy Crystal",
+                    BirthDate = DateTime.Parse("1948-3-14"),
+                    AwardedBestActor = true
+                },
+
+                new Actor
+                {
+                    Name = "Meg Ryan",
+                    BirthDate = DateTime.Parse("1961-11-19"),
+                    AwardedBestActor = true
+                },
+
+                new Actor
+                {
+                    Name = "Bill Murray",
+                    BirthDate = DateTime.Parse("1950-9-21"),
+                    AwardedBestActor = true
+                },
+
+                new Actor
+                {
+                    Name = "Dan Aykroyd",
+                    BirthDate = DateTime.Parse("1952-7-1"),
+                    AwardedBestActor = false
+                },
+
+                new Actor
+                {
+                    Name = "Sigourney Weaver",
+                    BirthDate = DateTime.Parse("1949-10-8"),
+                    AwardedBestActor = false
+                },
+
+                new Actor
+                {
+                    Name = "John Wayne",
+                    BirthDate = DateTime.Parse("1907-5-26"),
+                    AwardedBestActor = false
+                },
+
+                new Actor
+                {
+                    Name = "Dean Martin",
+                    BirthDate = DateTime.Parse("1917-7-7"),
+                    AwardedBestActor = false
+                }
+            );
+            context.SaveChanges();
+        }
+
+        private static void SeedAppereances(ApplicationContext context)
+        {
+            // Look for any appereance.
+            if (context.Appereances.Any())
             {
-                using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.FeedBack.Any()){
-                    return;   // DB has been seeded
-                };
-
-                Technician QueryTechnician = context.Technician
-                    .Where(s => s.Name == "Rodrigo Kan")
-                    .FirstOrDefault<Technician>();
-
-                ScoreSheet QueryScoreSheet = context.ScoreSheet
-                    .Where(s => s.Puntualidad == 8)
-                    .FirstOrDefault<ScoreSheet>();
-    
-                var FeedBacks = new FeedBack[]{
-                    new FeedBack {
-                    Technician = QueryTechnician,
-                    ScoreSheet=QueryScoreSheet,
-                    ScoreSheetID = QueryScoreSheet.ScoreSheetID,
-                    TechnicianID = QueryTechnician.TechnicianID,   
-                }};
-
-                foreach (FeedBack f in FeedBacks){
-                    context.FeedBack.Add(f);
-                };
-                context.SaveChanges();
-                     
-            }
+                return;   // DB has been seeded
             }
 
+            var appereances = new Appereance[]
+            {
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Billy Crystal").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "When Harry Met Sally").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Meg Ryan").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "When Harry Met Sally").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Bill Murray").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Dan Aykroyd").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Sigourney Weaver").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Bill Murray").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters 2").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Dan Aykroyd").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters 2").ID
+                },
 
+                new Appereance
+                {
+                    ActorID = context.Actors.Single(a => a.Name == "Sigourney Weaver").ID,
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters 2").ID
+                },
 
+                 new Appereance
+                 {
+                     ActorID = context.Actors.Single(a => a.Name == "John Wayne").ID,
+                     MovieID = context.Movies.Single(m => m.Title == "Rio Bravo").ID
+                 },
 
+                 new Appereance {
+                     ActorID = context.Actors.Single(a => a.Name == "Dean Martin").ID,
+                     MovieID = context.Movies.Single(m => m.Title == "Rio Bravo").ID
+                 }
+            };
 
-         }
+            foreach (Appereance a in appereances)
+            {
+                context.Appereances.Add(a);
+            }
+            context.SaveChanges();
+        }
+
+                private static void SeedLocations(ApplicationContext context)
+        {
+            // Look for any movies.
+            if (context.Location.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            context.Location.AddRange(
+                new Location
+                {
+                    MovieID = context.Movies.Single(m => m.Title == "When Harry Met Sally").ID,
+                    Name = "New York"
+                },
+
+                new Location
+                {
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters").ID,
+                    Name = "New York"
+                },
+
+                new Location
+                {
+                    MovieID = context.Movies.Single(m => m.Title == "Ghostbusters 2").ID,
+                    Name = "New York"
+                },
+
+                new Location
+                {
+                    MovieID = context.Movies.Single(m => m.Title == "Rio Bravo").ID,
+                    Name = "Tucson"
+                }
+            );
+            context.SaveChanges();
+        }
+
+    }
 }
-    
+
+

@@ -1,10 +1,10 @@
-﻿@using Linked.Areas.Identity.Data
+﻿@using RazorPagesMovie.Areas.Identity.Data
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Linked</title>
+    <title>@ViewData["Title"] - Movie</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -22,7 +22,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-page="/Index">LinkedIn-gnis</a>
+                <a class="navbar-brand" asp-page="/Index">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,34 +30,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName))
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Projects/Index">Projects</a>
-                            }
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Movies/Index">Movies</a>
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName))
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Technicians/Index">Technicians</a>
-                            }
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName))
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Clients/Index">Clients</a>
-                            }
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.AdminRoleName))
-                            {
-                                //<a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
-                            }
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Actors/Index">Actors</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole(IdentityData.AdminRoleName))
+                            {
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Users/Index">Users</a>
+                            }
+                        </li>
+                        <partial name="_LoginPartial" />
                     </ul>
-                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -71,7 +59,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Linked - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2019 - RazorPagesMovie - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
