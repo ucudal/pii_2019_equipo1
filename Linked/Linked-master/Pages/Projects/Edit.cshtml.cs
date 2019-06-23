@@ -37,6 +37,7 @@ namespace Linked.Pages.Projects
                 return NotFound();
             }
            ViewData["ClientID"] = new SelectList(_context.Client, "ClientID", "ClientID");
+           
             return Page();
         }
 

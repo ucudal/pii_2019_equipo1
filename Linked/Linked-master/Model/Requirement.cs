@@ -3,14 +3,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Linked.Models{
-    public class Employ{
-        [Key]
-        public string TechnicianID { get; set; }
+    public class Requirement{
         [Key]
         public string  ProjectID { get; set; }
         [Required]
-        public Technician Technician { get; set; }
-        [Required]
         public Project Project { get; set; }
+        [Required]
+        public Specialty Specialty { get; set; }
+        [Required]
+        public Level Level { get; set; }
+        [Required]
+        public int Hourload { get; set; }
     }
 }
