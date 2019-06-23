@@ -134,9 +134,9 @@ namespace Linked.Areas.Identity.Data
         {
              var user = new Client {
                     Name = nombre,
-                    DOB = fecha,
                     UserName = correo,
-                    Email = correo
+                    Email = correo,
+                    DOB = fecha
                 };
             var result = userManager.CreateAsync(user, contraseña);
         }

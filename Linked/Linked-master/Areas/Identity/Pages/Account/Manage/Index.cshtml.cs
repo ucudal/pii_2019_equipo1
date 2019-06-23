@@ -76,7 +76,6 @@ namespace Linked.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 Name = user.Name,
-                DOB = user.DOB,
                 Email = email,
                 PhoneNumber = phoneNumber
             };
@@ -113,11 +112,6 @@ namespace Linked.Areas.Identity.Pages.Account.Manage
             if (Input.Name != user.Name)
             {
                 user.Name = Input.Name;
-            }
-
-            if (Input.DOB != user.DOB)
-            {
-                user.DOB = Input.DOB;
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
