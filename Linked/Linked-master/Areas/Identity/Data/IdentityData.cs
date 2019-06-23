@@ -51,7 +51,8 @@ namespace Linked.Areas.Identity.Data
         "Rodrigo Kan",
         "James Cameron",
         "Ignacio Sica",
-        "Martin Perdomo"
+        "Martin Perdomo",
+        "Hola Hola"
         };
         public static string[] TechnicianMail = new string [] {
         "Rodolfo@gmail.com",
