@@ -39,9 +39,8 @@ namespace Linked.Areas.Identity.Data
             modelBuilder.Entity<Interest>().ToTable("Interest")
                 .HasKey(g => new { g.TechnicianID, g.ProjectID});
             
-            modelBuilder.Entity<Interest>()
-                .HasOne(h => h.Project)
-                .WithMany(j => j.InterestedTechnicians);
+            modelBuilder.Entity<Requirement>().ToTable("Requirement")
+                .HasOne(h => new { h.ProjectID });
         }
     }
 }
