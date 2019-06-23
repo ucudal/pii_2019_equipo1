@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
 using Microsoft.EntityFrameworkCore;
 using Linked.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Linked.Pages.Projects{
+    [Authorize(Roles = "Administrator")]
     public class AllocateModel : PageModel{
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 

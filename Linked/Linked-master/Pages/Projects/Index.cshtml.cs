@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Linked.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Linked.Pages.Projects
 {
+    [Authorize(Roles = "Administrator, Cliente, Técnico")]
     public class IndexModel : PageModel
     {
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Linked.Pages.Projects
 {
+    [Authorize(Roles = "Administrator, Cliente")]
     public class CreateModel : PageModel
     {
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;

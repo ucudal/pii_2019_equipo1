@@ -1,5 +1,6 @@
 @page
 @model Linked.Pages.Projects.IndexModel
+@using Linked.Areas.Identity.Data
 
 @{
     ViewData["Title"] = "Index";
@@ -44,10 +45,13 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                <a asp-page="./Allocate" asp-route-id="@item.ProjectID">Allocate</a> |
                 <a asp-page="./Edit" asp-route-id="@item.ProjectID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ProjectID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ProjectID">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.ProjectID">Delete</a> |
+                @if (User.IsInRole(IdentityData.AdminRoleName))
+                {
+                    <a asp-page="./Allocate" asp-route-id="@item.ProjectID">Allocate</a> 
+                }
             </td>
         </tr>
 }
