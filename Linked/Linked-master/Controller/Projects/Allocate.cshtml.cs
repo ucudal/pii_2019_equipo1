@@ -18,16 +18,20 @@ namespace Linked.Pages.Projects{
         }
 
         public Project Project { get; set; }
+        public ApplicationUser currentUser { get; set; }
         
         public async Task OnGetAsync(string id){
             Project = await _context.Project.FindAsync(id);
             TechniciansAlternativos = LoadTechniciansAlternativos();
             Technician = LoadTechnicians();
+            InterestedTechnicians = LoadInterestedTechnicians();
         }
         public Technician TechnicianSelected {get; set;}
         public IEnumerable<Technician> Technician {get;set;}
 
         public IEnumerable<Technician> TechniciansAlternativos {get;set;}
+
+        public IEnumerable<Technician> InterestedTechnicians {get;set;}
 
         public IEnumerable<Technician> LoadTechniciansAlternativos(){
             var db = _context;
@@ -44,6 +48,15 @@ namespace Linked.Pages.Projects{
                 }
             }catch{}
             return e;
+        }
+
+        public IEnumerable<Technician> LoadInterestedTechnicians(){
+            var db = _context;
+            IEnumerable<Technician> f = Enumerable.Empty<Technician>();
+            foreach(Interest interest in db.Interest.Where(i => i.ProjectID == Project.ProjectID)){
+                f = f.Concat(db.Technician.Where(t => t.TechnicianID == interest.TechnicianID).AsEnumerable());
+            }
+            return f;
         }
 
         public IEnumerable<Technician> LoadTechnicians(){
@@ -84,6 +97,11 @@ namespace Linked.Pages.Projects{
                 _context.Employ.Add(NewEmploy);
                 await _context.SaveChangesAsync();
             }
+            
+            if(User.IsInRole(IdentityData.NonAdminRoleNames[0])){
+                return RedirectToPage("../ClientLayout/MyProjects");
+            }
+
             return RedirectToPage("./Index");
         }
     }

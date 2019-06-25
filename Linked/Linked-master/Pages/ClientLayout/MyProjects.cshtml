@@ -1,0 +1,42 @@
+@page
+@model Linked.Pages.MyProjectsC.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My Projects</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>CompletionStatus</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Projects) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletionStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-page="../Projects/Allocate" asp-route-id="@item.ProjectID">Allocate</a> |
+                <a asp-page="../Projects/AddRequirement" asp-route-id="@item.ProjectID">Add Requirement</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

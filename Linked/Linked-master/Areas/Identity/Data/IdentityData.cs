@@ -17,7 +17,7 @@ namespace Linked.Areas.Identity.Data
 
         public const string AdminRoleName = "Administrator";
 
-        public static string[] NonAdminRoleNames = new string[] { "Cliente", "Técnico" };
+        public static string[] NonAdminRoleNames = new string[] { "Client", "Technician" };
     }
     public static class ClientData
     {

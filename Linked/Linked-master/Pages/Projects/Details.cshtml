@@ -49,6 +49,33 @@
 </div>
 <hr />
 
+@if (Model.Requirements.Count()>0)
+{
+    <h4>Requirements</h4>
+    <table class="table">
+        <tr>
+            <th>Specialty</th>
+            <th>Level</th>
+            <th>Hourload</th>
+        </tr>
+
+        @foreach (var item in Model.Requirements)
+        {
+            <tr>
+                <td>
+                    @item.Specialty
+                </td>
+                <td>
+                    @item.Level
+                </td>
+                <td>
+                    @item.Hourload
+                </td>
+            </tr>
+        }
+    </table>
+}
+
 
 @if (Model.Technicians.Count()>0)
 {

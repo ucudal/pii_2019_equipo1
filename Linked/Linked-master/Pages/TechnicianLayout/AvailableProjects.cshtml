@@ -1,0 +1,60 @@
+@page
+@model Linked.Pages.AvailableProjects.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Available Projects</h1>
+
+<h3>@Html.DisplayFor(model => model.Specialty)</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                CompletionStatus
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Requirements) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.CompletionStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Date)
+            </td>
+            <td>
+                <form method="post">
+                    <input type="hidden" asp-for=Project />
+                    <input type="hidden" name="ProjectID" value=@item.Project.ProjectID />
+                    <input type="submit" value="Show Interest" class="btn btn-danger" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@if(Model.AlreadyInterested != null)
+{
+    <h2>@Html.DisplayFor(model => model.AlreadyInterested)</h2>
+}

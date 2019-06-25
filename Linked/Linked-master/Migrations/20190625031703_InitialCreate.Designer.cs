@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Linked.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190619210152_InitialCreate")]
+    [Migration("20190625031703_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,10 +100,25 @@ namespace Linked.Migrations
 
                     b.HasKey("TechnicianID", "ScoreSheetID");
 
+                    b.HasAlternateKey("ScoreSheetID", "TechnicianID");
+
                     b.HasIndex("ScoreSheetID")
                         .IsUnique();
 
                     b.ToTable("FeedBack");
+                });
+
+            modelBuilder.Entity("Linked.Models.Interest", b =>
+                {
+                    b.Property<string>("TechnicianID");
+
+                    b.Property<string>("ProjectID");
+
+                    b.HasKey("TechnicianID", "ProjectID");
+
+                    b.HasAlternateKey("ProjectID", "TechnicianID");
+
+                    b.ToTable("Interest");
                 });
 
             modelBuilder.Entity("Linked.Models.Project", b =>
@@ -119,7 +134,7 @@ namespace Linked.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(60);
+                        .HasMaxLength(150);
 
                     b.Property<int>("Level");
 
@@ -127,13 +142,34 @@ namespace Linked.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(60);
+                        .HasMaxLength(50);
 
                     b.HasKey("ProjectID");
 
                     b.HasIndex("ClientID");
 
                     b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("Linked.Models.Requirement", b =>
+                {
+                    b.Property<string>("RequirementID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Hourload");
+
+                    b.Property<int>("Level");
+
+                    b.Property<string>("ProjectID")
+                        .IsRequired();
+
+                    b.Property<int>("Specialty");
+
+                    b.HasKey("RequirementID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("Requirement");
                 });
 
             modelBuilder.Entity("Linked.Models.ScoreSheet", b =>
@@ -278,8 +314,6 @@ namespace Linked.Migrations
                 {
                     b.HasBaseType("Linked.Areas.Identity.Data.ApplicationUser");
 
-                    b.Property<string>("ClientID");
-
                     b.HasDiscriminator().HasValue("Client");
                 });
 
@@ -287,13 +321,9 @@ namespace Linked.Migrations
                 {
                     b.HasBaseType("Linked.Areas.Identity.Data.ApplicationUser");
 
-                    b.Property<DateTime>("Birthday");
-
                     b.Property<int>("Level");
 
                     b.Property<int>("Specialty");
-
-                    b.Property<string>("TechnicianID");
 
                     b.HasDiscriminator().HasValue("Technician");
                 });
@@ -324,11 +354,32 @@ namespace Linked.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Linked.Models.Interest", b =>
+                {
+                    b.HasOne("Linked.Models.Project", "Project")
+                        .WithMany("InterestedTechnicians")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Linked.Models.Technician", "Technician")
+                        .WithMany("InterestingProjects")
+                        .HasForeignKey("TechnicianID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Linked.Models.Project", b =>
                 {
                     b.HasOne("Linked.Models.Client", "Client")
                         .WithMany("Projects")
                         .HasForeignKey("ClientID");
+                });
+
+            modelBuilder.Entity("Linked.Models.Requirement", b =>
+                {
+                    b.HasOne("Linked.Models.Project", "Project")
+                        .WithMany("Requirements")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

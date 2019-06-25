@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
 
-namespace Linked.Pages.Projects
+namespace Linked.Pages.ProjectsC
 {
     public class CreateModel : PageModel
     {
@@ -18,26 +18,23 @@ namespace Linked.Pages.Projects
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-        ViewData["ClientID"] = new SelectList(_context.Client, "ClientID", "ClientID");
-            return Page();
-        }
-
         [BindProperty]
         public Project Project { get; set; }
 
+        public Client currentUser { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+
+            string userId = User.Identity.Name;
+            currentUser = _context.Client.FirstOrDefault(x => x.Email == userId);
+
+            Project.ClientID = currentUser.ClientID;
 
             _context.Project.Add(Project);
             await _context.SaveChangesAsync();
             
-            return RedirectToPage("./Index");
+            return RedirectToPage("./MyProjects");
         }
     }
 }
