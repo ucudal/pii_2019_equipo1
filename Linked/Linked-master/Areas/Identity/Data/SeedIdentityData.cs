@@ -113,7 +113,7 @@ namespace Linked.Areas.Identity.Data
                 };
             }
 
-            for (int i = 0; i < TechnicianData.TechnicianNames.Count(); i++)
+            for (int i = 0; i < TechnicianData.TechnicianNames.Count()-1; i++)
             {
                 CreateTechnician(
                 TechnicianData.TechnicianNames[i],

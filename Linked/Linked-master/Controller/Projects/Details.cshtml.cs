@@ -22,6 +22,8 @@ namespace Linked.Pages.Projects
 
         public IEnumerable<Technician> Technicians {get;set;}
 
+        public IEnumerable<Requirement> Requirements {get;set;}
+
         public IEnumerable<Technician> LoadTechnicians(){
             var db = _context;
             IEnumerable<Technician> e = Enumerable.Empty<Technician>();
@@ -42,6 +44,8 @@ namespace Linked.Pages.Projects
 
             Project = await _context.Project
                 .Include(p => p.Client).FirstOrDefaultAsync(m => m.ProjectID == id);
+
+            Requirements = await _context.Requirement.Where(m => m.ProjectID == id).ToListAsync();
 
             Technicians = LoadTechnicians();
 

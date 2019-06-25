@@ -14,7 +14,7 @@ namespace Linked.Models{
         public string TechnicianID { get{return this.Id;}}
         
         [DataType(DataType.Date), Range(typeof(DateTime),"3/4/2010","1/2/1900", ErrorMessage = "Value for {0} must be between {1} and {2}")]
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get {return this.DOB;} }
         
         public Specialty Specialty { get; set; }
         public Level Level { get; set; }

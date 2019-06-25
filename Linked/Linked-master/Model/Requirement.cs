@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Linked.Models{
     public class Requirement{
-        [Key]
+        public string RequirementID { get; set; }
         public string  ProjectID { get; set; }
         [Required]
         public Project Project { get; set; }

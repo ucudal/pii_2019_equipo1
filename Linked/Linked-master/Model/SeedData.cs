@@ -25,21 +25,21 @@ namespace Linked.Models{
 
                 var Projects = new Project[]{
                     new Project { Title = "Reclame UCU Enseña", Date = DateTime.Parse("2019-02-01"), 
-                    Specialty = Specialty.Director, Level = Level.Avanzado, Description = "Reclame de 5 minutos",CompletionStatus = false},
+                    Description = "Reclame de 5 minutos",CompletionStatus = false},
                     new Project { Title = "Propaganda Copa América", Date = DateTime.Parse("2019-03-02"),
-                    Specialty = Specialty.Actor, Level = Level.Básico, Description = "Titulares y Highlights de la Copa 2015", CompletionStatus = false},
+                    Description = "Titulares y Highlights de la Copa 2015", CompletionStatus = false},
                     new Project { Title = "Kung Fu Panda 5", Date = DateTime.Parse("2019-07-03"),
-                    Specialty = Specialty.Camarógrafo, Level = Level.Intermedio, Description = "Trailer de la nueva Película", CompletionStatus = false},
+                    Description = "Trailer de la nueva Película", CompletionStatus = false},
                     new Project { Title = "Open Fing Clases", Date = DateTime.Parse("2019-11-04"),
-                    Specialty = Specialty.Sonidista, Level = Level.Profesional, Description = "Grabar Curso 779283 completo ", CompletionStatus = false},
+                    Description = "Grabar Curso 779283 completo ", CompletionStatus = false},
                     new Project { Title = "Toy Story 5", Date = DateTime.Parse("2019-12-05"),
-                    Specialty = Specialty.Director, Level = Level.Intermedio, Description = "Trailer de la Nueva Pelicula de Pixar", CompletionStatus = false},
+                    Description = "Trailer de la Nueva Pelicula de Pixar", CompletionStatus = false},
                     new Project { Title = "Mi Villano Favorito", Date = DateTime.Parse("2019-10-04"),
-                    Specialty = Specialty.Director, Level = Level.Intermedio, Description = "Mindstorming de la nueva Película", CompletionStatus = false},
+                    Description = "Mindstorming de la nueva Película", CompletionStatus = false},
                     new Project { Title = "Podcast con Alumnos", Date = DateTime.Parse("2019-04-06"),
-                    Specialty = Specialty.Camarógrafo, Level = Level.Básico, Description = "Entrevistas casuales acerca de la vida estudiantil en UCU", CompletionStatus = true},
+                    Description = "Entrevistas casuales acerca de la vida estudiantil en UCU", CompletionStatus = true},
                     new Project { Title = "VideoClip Musical Survivors", Date = DateTime.Parse("2019-09-07"),
-                    Specialty = Specialty.Actor, Level = Level.Avanzado, Description = "Filmar el nuevo videoclip para Survivors", CompletionStatus = false},
+                    Description = "Filmar el nuevo videoclip para Survivors", CompletionStatus = false},
                 };
 
                 foreach (Project p in Projects){

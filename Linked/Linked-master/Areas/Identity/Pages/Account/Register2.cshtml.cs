@@ -120,8 +120,10 @@ namespace Linked.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     Specialty=Input.Specialty,
                     Level=Input.Level,
-                    DOB = Input.Birthday
+                    DOB = Input.Birthday,
                 };
+
+                user.AssignRole(_userManager, IdentityData.NonAdminRoleNames[1]);
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

@@ -77,8 +77,10 @@ namespace Linked.Areas.Identity.Pages.Account
                     Name = Input.Name,
                     UserName = Input.Email,
                     Email = Input.Email,
-                    DOB = DateTime.Now
+                    DOB = DateTime.Now,
                 };
+
+                user.AssignRole(_userManager, IdentityData.NonAdminRoleNames[0]);
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

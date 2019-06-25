@@ -6,7 +6,7 @@
 }
 
 <h1>Asignar tecnico</h1>
-@if (Model.Technician.Count()>0)
+@if (Model.Technicians.Count()>0)
 {
 <div>
     <h4>Técnico</h4>
@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Technician){
+@foreach (var item in Model.Technicians){
             <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -87,6 +87,39 @@
 </table>
 }
 
-<div>
-    <a asp-page="./Index">Volver a la lista</a>
-</div>
+@if (Model.InterestedTechnicians.Count()>0)
+{
+    <h4>Interested Technicians</h4>
+    <table class="table">
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Level </th>
+            <th> Specialty </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.InterestedTechnicians){
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialty)
+            </td>
+            <td>
+            <form method="post">
+                <input type="hidden" asp-for=Project />
+                <input type="hidden" name="TechnicianID" value=@item.TechnicianID />
+                <input type="submit" value="Select" class="btn btn-danger" />
+            </form>
+            </td>   
+            </tr>
+}
+    </tbody>
+</table>
+}

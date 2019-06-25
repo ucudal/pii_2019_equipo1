@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Linked.Areas.Identity.Data;
-using Microsoft.AspNetCore.Authorization;
+using Linked.Models;
 
-namespace Linked.Areas.Identity.Pages.Users
+namespace Linked.Pages.Requirements
 {
-    [Authorize(Roles=IdentityData.AdminRoleName)] // Solo los usuarios con rol administrador pueden acceder a este controlador
     public class DeleteModel : PageModel
     {
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;
@@ -21,7 +20,7 @@ namespace Linked.Areas.Identity.Pages.Users
         }
 
         [BindProperty]
-        public ApplicationUser ApplicationUser { get; set; }
+        public Requirement Requirement { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -30,14 +29,13 @@ namespace Linked.Areas.Identity.Pages.Users
                 return NotFound();
             }
 
-            ApplicationUser = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            Requirement = await _context.Requirement.FirstOrDefaultAsync(m => m.ProjectID == id);
 
-            if (ApplicationUser == null)
+            if (Requirement == null)
             {
                 return NotFound();
             }
-            //return Page();
-            return Redirect("https://localhost:5001/"+ApplicationUser.Role+"s/Delete?id="+ApplicationUser.Id);
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string id)
@@ -47,11 +45,11 @@ namespace Linked.Areas.Identity.Pages.Users
                 return NotFound();
             }
 
-            ApplicationUser = await _context.Users.FindAsync(id);
+            Requirement = await _context.Requirement.FindAsync(id);
 
-            if (ApplicationUser != null)
+            if (Requirement != null)
             {
-                _context.Users.Remove(ApplicationUser);
+                _context.Requirement.Remove(Requirement);
                 await _context.SaveChangesAsync();
             }
 
