@@ -20,7 +20,6 @@ namespace Linked.Pages.AvailableProjects
         public Technician currentUser { get; set; }
         public Project Project { get; set; }
         public Specialty Specialty { get; set; }
-        public string AlreadyInterested { get;set; }
 
         public IndexModel(Linked.Areas.Identity.Data.IdentityContext context)
         {
@@ -35,6 +34,7 @@ namespace Linked.Pages.AvailableProjects
             Requirements = await _context.Requirement
                 .Where(r => r.Specialty == currentUser.Specialty).Include(r => r.Project).ToListAsync();
             
+            //Change, do not show projects where the user is already employed
         }
 
         public async Task<IActionResult> OnPostAsync()

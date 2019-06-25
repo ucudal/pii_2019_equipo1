@@ -7,34 +7,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
 
-namespace Linked.Pages.ProjectsC
-{
-    public class CreateModel : PageModel
-    {
+namespace Linked.Pages.ProjectsC{
+    public class CreateModel : PageModel{
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;
 
-        public CreateModel(Linked.Areas.Identity.Data.IdentityContext context)
-        {
+        public CreateModel(Linked.Areas.Identity.Data.IdentityContext context){
             _context = context;
         }
 
         [BindProperty]
         public Project Project { get; set; }
 
-        public Client currentUser { get; set; }
+        public Client currentUser { get; set; } // Current Client logged in the app
 
-        public async Task<IActionResult> OnPostAsync()
-        {
+        public async Task<IActionResult> OnPostAsync(){
+            
+            try {
+                string userId = User.Identity.Name; // Gets the current logged email
+                currentUser = _context.Client.FirstOrDefault(x => x.Email == userId); // Gets from context the Client with that email
+            } catch (Exception e) {
+                Console.WriteLine("Something went wrong getting the logged user: " + e);
+                return RedirectToPage("./MyProjects");
+            }
 
-            string userId = User.Identity.Name;
-            currentUser = _context.Client.FirstOrDefault(x => x.Email == userId);
-
-            Project.ClientID = currentUser.ClientID;
-
-            _context.Project.Add(Project);
-            await _context.SaveChangesAsync();
+            Project.ClientID = currentUser.ClientID; // Adds the clientID to the Project
+            
+            try {
+                _context.Project.Add(Project);
+                await _context.SaveChangesAsync();
+            } catch (Exception e) {
+                Console.WriteLine("Something went wrong persisting the project in the db: " + e);
+            }
             
             return RedirectToPage("./MyProjects");
+
         }
     }
 }
