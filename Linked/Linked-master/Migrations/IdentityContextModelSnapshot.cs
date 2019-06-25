@@ -134,10 +134,6 @@ namespace Linked.Migrations
                         .IsRequired()
                         .HasMaxLength(150);
 
-                    b.Property<int>("Level");
-
-                    b.Property<int>("Specialty");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50);

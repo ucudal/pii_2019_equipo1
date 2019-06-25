@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Linked.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20190625031703_InitialCreate")]
+    [Migration("20190625092554_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,10 +135,6 @@ namespace Linked.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(150);
-
-                    b.Property<int>("Level");
-
-                    b.Property<int>("Specialty");
 
                     b.Property<string>("Title")
                         .IsRequired()

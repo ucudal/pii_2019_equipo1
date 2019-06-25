@@ -184,8 +184,6 @@ namespace Linked.Migrations
                     Description = table.Column<string>(maxLength: 150, nullable: false),
                     CompletionStatus = table.Column<bool>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Specialty = table.Column<int>(nullable: false),
-                    Level = table.Column<int>(nullable: false),
                     ClientID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

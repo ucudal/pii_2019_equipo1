@@ -6,7 +6,7 @@
 }
 
 <h1>Asignar tecnico</h1>
-@if (Model.Technician.Count()>0)
+@if (Model.Technicians.Count()>0)
 {
 <div>
     <h4>Técnico</h4>
@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Technician){
+@foreach (var item in Model.Technicians){
             <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

@@ -23,12 +23,6 @@ namespace Linked.Models{
         [Display(Name = "Date"), DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        //Needs to be deleted
-        [Required]
-        public Specialty Specialty{ get; set; }
-        [Required]
-        public Level Level{ get; set; }
-
         
         public IList<Employ> Employees { get; set; } // Technicians
         public IList<Interest> InterestedTechnicians { get; set; } // Interested Technicians

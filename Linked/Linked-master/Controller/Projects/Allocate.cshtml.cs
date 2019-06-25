@@ -19,61 +19,61 @@ namespace Linked.Pages.Projects{
 
         public Project Project { get; set; }
         public ApplicationUser currentUser { get; set; }
+
+        public Technician TechnicianSelected {get; set;}
+        public IList<Technician> Technicians {get;set;}
+        public IList<Technician> TechniciansAlternativos {get;set;}
+        public IList<Technician> InterestedTechnicians {get;set;}
+        public IList<Technician> CurrentTechnicians {get;set;}
         
         public async Task OnGetAsync(string id){
             Project = await _context.Project.FindAsync(id);
+
+            List<Technician> curTec = new List<Technician>();
+            foreach(Employ e in _context.Employ.Where( emp => emp.ProjectID == Project.ProjectID)){
+                curTec.Add(_context.Technician.Find( e.TechnicianID ));
+            }
+
+            CurrentTechnicians = curTec;
+            Technicians = LoadTechnicians();
             TechniciansAlternativos = LoadTechniciansAlternativos();
-            Technician = LoadTechnicians();
             InterestedTechnicians = LoadInterestedTechnicians();
         }
-        public Technician TechnicianSelected {get; set;}
-        public IEnumerable<Technician> Technician {get;set;}
 
-        public IEnumerable<Technician> TechniciansAlternativos {get;set;}
-
-        public IEnumerable<Technician> InterestedTechnicians {get;set;}
-
-        public IEnumerable<Technician> LoadTechniciansAlternativos(){
-            var db = _context;
-            IEnumerable<Technician> e = Enumerable.Empty<Technician>();
-            IEnumerable<Technician> f = Enumerable.Empty<Technician>();
-            try {
-                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
-                    f = f.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
-                }
-                foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
-                    if (technician.Specialty == Project.Specialty && technician.Level != Project.Level && !f.Contains(technician)){
-                        e = e.Append(technician);
+        public IList<Technician> LoadTechnicians(){
+            List<Technician> reqTec = new List<Technician>();
+            foreach(Requirement required in _context.Requirement.Where(i => i.ProjectID == Project.ProjectID)){
+                foreach(Technician posTec in _context.Technician.Where(t => t.Specialty == required.Specialty)){
+                    if(posTec.Level == required.Level && !CurrentTechnicians.Contains(posTec)){
+                        reqTec.Add(posTec);
                     }
                 }
-            }catch{}
-            return e;
-        }
-
-        public IEnumerable<Technician> LoadInterestedTechnicians(){
-            var db = _context;
-            IEnumerable<Technician> f = Enumerable.Empty<Technician>();
-            foreach(Interest interest in db.Interest.Where(i => i.ProjectID == Project.ProjectID)){
-                f = f.Concat(db.Technician.Where(t => t.TechnicianID == interest.TechnicianID).AsEnumerable());
             }
-            return f;
+            return reqTec;
         }
-
-        public IEnumerable<Technician> LoadTechnicians(){
-            var db = _context;
-            IEnumerable<Technician> e = Enumerable.Empty<Technician>();
-            IEnumerable<Technician> f = Enumerable.Empty<Technician>();
-            try {
-                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
-                    f = f.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
-                }
-                foreach(Technician technician in db.Technician.Include(c=>c.Employers).AsEnumerable()){
-                    if (technician.Specialty == Project.Specialty && technician.Level == Project.Level && !f.Contains(technician)){
-                        e = e.Append(technician);
+        
+        public IList<Technician> LoadTechniciansAlternativos(){
+            List<Technician> altTec = new List<Technician>();
+            foreach(Requirement required in _context.Requirement.Where(i => i.ProjectID == Project.ProjectID)){
+                foreach(Technician posTec in _context.Technician.Where(t => t.Specialty == required.Specialty)){
+                    if(posTec.Level != required.Level && !CurrentTechnicians.Contains(posTec)){
+                        altTec.Add(posTec);
                     }
                 }
-            }catch{}
-            return e;
+            }
+            return altTec;
+        }
+
+        public IList<Technician> LoadInterestedTechnicians(){
+            IList<Technician> intTec = new List<Technician>();
+            foreach(Interest interest in _context.Interest.Where(i => i.ProjectID == Project.ProjectID)){
+                foreach (Technician posTec in _context.Technician.Where(t => t.TechnicianID == interest.TechnicianID)){
+                    if(!CurrentTechnicians.Contains(posTec)){
+                        intTec.Add(posTec);
+                    }
+                }
+            }
+            return intTec;
         }
 
         public async Task<IActionResult> OnPostAsync(string id)
