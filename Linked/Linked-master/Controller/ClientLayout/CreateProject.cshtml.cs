@@ -31,7 +31,7 @@ namespace Linked.Pages.ProjectsC{
             }
 
             Project.ClientID = currentUser.ClientID; // Adds the clientID to the Project
-            
+
             try {
                 _context.Project.Add(Project);
                 await _context.SaveChangesAsync();
