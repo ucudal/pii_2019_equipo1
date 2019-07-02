@@ -19,7 +19,6 @@ namespace Linked.Models{
         public Specialty Specialty { get; set; }
         public Level Level { get; set; }
 
-        public List<FeedBack> FeedBacks { get; set; } //Feedbacks
         public List<Employ> Employers { get; set; } //Projects
         public IList<Interest> InterestingProjects { get; set; } // Interesting Projects
     }   

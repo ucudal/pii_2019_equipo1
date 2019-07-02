@@ -90,22 +90,6 @@ namespace Linked.Migrations
                     b.ToTable("Employ");
                 });
 
-            modelBuilder.Entity("Linked.Models.FeedBack", b =>
-                {
-                    b.Property<string>("TechnicianID");
-
-                    b.Property<string>("ScoreSheetID");
-
-                    b.HasKey("TechnicianID", "ScoreSheetID");
-
-                    b.HasAlternateKey("ScoreSheetID", "TechnicianID");
-
-                    b.HasIndex("ScoreSheetID")
-                        .IsUnique();
-
-                    b.ToTable("FeedBack");
-                });
-
             modelBuilder.Entity("Linked.Models.Interest", b =>
                 {
                     b.Property<string>("TechnicianID");
@@ -164,33 +148,6 @@ namespace Linked.Migrations
                     b.HasIndex("ProjectID");
 
                     b.ToTable("Requirement");
-                });
-
-            modelBuilder.Entity("Linked.Models.ScoreSheet", b =>
-                {
-                    b.Property<string>("ScoreSheetID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Compromiso")
-                        .HasMaxLength(2);
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<int>("Formalidad")
-                        .HasMaxLength(2);
-
-                    b.Property<int>("Profesionalismo")
-                        .HasMaxLength(2);
-
-                    b.Property<int>("Puntualidad")
-                        .HasMaxLength(2);
-
-                    b.Property<int>("Respeto")
-                        .HasMaxLength(2);
-
-                    b.HasKey("ScoreSheetID");
-
-                    b.ToTable("ScoreSheet");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -331,19 +288,6 @@ namespace Linked.Migrations
 
                     b.HasOne("Linked.Models.Technician", "Technician")
                         .WithMany("Employers")
-                        .HasForeignKey("TechnicianID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Linked.Models.FeedBack", b =>
-                {
-                    b.HasOne("Linked.Models.ScoreSheet", "ScoreSheet")
-                        .WithOne("FeedBack")
-                        .HasForeignKey("Linked.Models.FeedBack", "ScoreSheetID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Linked.Models.Technician", "Technician")
-                        .WithMany("FeedBacks")
                         .HasForeignKey("TechnicianID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

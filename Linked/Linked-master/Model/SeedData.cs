@@ -9,9 +9,7 @@ namespace Linked.Models{
         public static void Initialize(IServiceProvider serviceProvider)
         {
             SeedProjects(serviceProvider);
-            SeedEmploys(serviceProvider);
-            SeedScoreSheets(serviceProvider);
-            SeedFeedbacks(serviceProvider);            
+            SeedEmploys(serviceProvider);           
         }      
 
             public static void SeedProjects(IServiceProvider serviceProvider)
@@ -88,74 +86,7 @@ namespace Linked.Models{
                 context.SaveChanges();
 
             }
-            }
-
-            public static void SeedScoreSheets(IServiceProvider serviceProvider)
-            {
-                using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.ScoreSheet.Any()){
-                    return;   // DB has been seeded
-                };
-                    var ScoreSheets = new ScoreSheet[]{
-                    new ScoreSheet {
-                    Date = DateTime.Now,
-                    Compromiso = 2,
-                    Puntualidad = 8,
-                    Formalidad = 9,
-                    Respeto = 9,
-                    Profesionalismo = 8},       
-                };
-
-                foreach (ScoreSheet sc in ScoreSheets){
-                    context.ScoreSheet.Add(sc);
-                };
-                context.SaveChanges();       
-            }
-            }
-
-            public static void SeedFeedbacks(IServiceProvider serviceProvider)
-            {
-                using (var context = new IdentityContext(serviceProvider.GetRequiredService<DbContextOptions<IdentityContext>>())){
-
-                if (context.FeedBack.Any()){
-                    return;   // DB has been seeded
-                };
-
-                Technician QueryTechnician = context.Technician
-                    .Where(s => s.Name == "Rodrigo Kan")
-                    .FirstOrDefault<Technician>();
-
-                ScoreSheet QueryScoreSheet = context.ScoreSheet
-                    .Where(s => s.Puntualidad == 8)
-                    .FirstOrDefault<ScoreSheet>();
-    
-                var FeedBacks = new FeedBack[]{
-                    new FeedBack {
-                    Technician = QueryTechnician,
-                    ScoreSheet=QueryScoreSheet,
-                    ScoreSheetID = QueryScoreSheet.ScoreSheetID,
-                    TechnicianID = QueryTechnician.TechnicianID,   
-                }};
-
-                foreach (FeedBack f in FeedBacks){
-                    context.FeedBack.Add(f);
-                };
-                context.SaveChanges();
-                     
-            }
-            }
-
-
-
-
-
-
-
-
-
-
-
-         }
+        }
+    }
 }
     
