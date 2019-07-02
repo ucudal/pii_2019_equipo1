@@ -46,10 +46,6 @@ namespace Linked.Pages.AddRequirement{
         }
 
         public async Task<IActionResult> OnPostAsync(string id){
-            if (!ModelState.IsValid){
-                return Page();
-            }
-
             Requirement.ProjectID = id;
 
             _context.Requirement.Add(Requirement);

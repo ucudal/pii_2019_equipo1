@@ -66,12 +66,6 @@
                             }
                         </li>
                         <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.NonAdminRoleNames[1]))
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ClientLayout/Feedbacks">My Feedbacks</a>
-                            }
-                        </li>
-                        <li class="nav-item">
                             @if (User.IsInRole(IdentityData.NonAdminRoleNames[0]))
                             {
                             <a class="nav-link text-dark" asp-area="" asp-page="/ClientLayout/MyProjects">My Projects</a>
@@ -81,12 +75,6 @@
                             @if (User.IsInRole(IdentityData.NonAdminRoleNames[0]))
                             {
                             <a class="nav-link text-dark" asp-area="" asp-page="/ClientLayout/CreateProject">Create Project</a>
-                            }
-                        </li>
-                        <li class="nav-item">
-                            @if (User.IsInRole(IdentityData.NonAdminRoleNames[0]))
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ClientLayout/PendingFeedbacks">Pending Feedbacks</a>
                             }
                         </li>
                         <li class="nav-item">

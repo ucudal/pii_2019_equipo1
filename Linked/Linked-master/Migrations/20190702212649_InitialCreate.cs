@@ -53,23 +53,6 @@ namespace Linked.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ScoreSheet",
-                columns: table => new
-                {
-                    ScoreSheetID = table.Column<string>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Puntualidad = table.Column<int>(maxLength: 2, nullable: false),
-                    Respeto = table.Column<int>(maxLength: 2, nullable: false),
-                    Formalidad = table.Column<int>(maxLength: 2, nullable: false),
-                    Profesionalismo = table.Column<int>(maxLength: 2, nullable: false),
-                    Compromiso = table.Column<int>(maxLength: 2, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ScoreSheet", x => x.ScoreSheetID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -198,31 +181,6 @@ namespace Linked.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FeedBack",
-                columns: table => new
-                {
-                    TechnicianID = table.Column<string>(nullable: false),
-                    ScoreSheetID = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FeedBack", x => new { x.TechnicianID, x.ScoreSheetID });
-                    table.UniqueConstraint("AK_FeedBack_ScoreSheetID_TechnicianID", x => new { x.ScoreSheetID, x.TechnicianID });
-                    table.ForeignKey(
-                        name: "FK_FeedBack_ScoreSheet_ScoreSheetID",
-                        column: x => x.ScoreSheetID,
-                        principalTable: "ScoreSheet",
-                        principalColumn: "ScoreSheetID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FeedBack_AspNetUsers_TechnicianID",
-                        column: x => x.TechnicianID,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Employ",
                 columns: table => new
                 {
@@ -331,12 +289,6 @@ namespace Linked.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeedBack_ScoreSheetID",
-                table: "FeedBack",
-                column: "ScoreSheetID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Project_ClientID",
                 table: "Project",
                 column: "ClientID");
@@ -368,9 +320,6 @@ namespace Linked.Migrations
                 name: "Employ");
 
             migrationBuilder.DropTable(
-                name: "FeedBack");
-
-            migrationBuilder.DropTable(
                 name: "Interest");
 
             migrationBuilder.DropTable(
@@ -378,9 +327,6 @@ namespace Linked.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "ScoreSheet");
 
             migrationBuilder.DropTable(
                 name: "Project");

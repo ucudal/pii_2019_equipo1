@@ -32,20 +32,6 @@ namespace Linked.Pages.Technicians
            }catch{}
             return e;
         }
-
-        public IEnumerable<ScoreSheet> ScoreSheets { get; set; }
-
-        public IEnumerable<ScoreSheet> LoadScoreSheets(){
-            var db = _context;
-            IEnumerable<ScoreSheet> e = Enumerable.Empty<ScoreSheet>();
-            try{
-                foreach(FeedBack fb in db.FeedBack.Where(p => p.TechnicianID == Technician.TechnicianID)){
-                    e = e.Concat(db.ScoreSheet.Where(t => t.ScoreSheetID == fb.ScoreSheetID).AsEnumerable());
-                }
-            }catch{}
-            return e;
-        }
-
         public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
@@ -56,8 +42,6 @@ namespace Linked.Pages.Technicians
             Technician = await _context.Technician.FirstOrDefaultAsync(m => m.TechnicianID == id);
 
             Projects = LoadProjects();
-
-            ScoreSheets = LoadScoreSheets();
 
             if (Technician == null)
             {
