@@ -22,8 +22,7 @@ namespace Linked.Pages.Clients
         public IEnumerable<Project> Projects {get;set;}
 
         public IEnumerable<Project> LoadProjects(){
-            var db = _context;
-            return db.Project.Where(p=>p.ClientID == Client.ClientID).AsEnumerable();
+            return _context.Project.Where(p=>p.ClientID == Client.ClientID).AsEnumerable();
         }
 
         public async Task<IActionResult> OnGetAsync(string id)
@@ -34,12 +33,14 @@ namespace Linked.Pages.Clients
             }
 
             Client = await _context.Client.FirstOrDefaultAsync(m => m.ClientID == id);
-            Projects = LoadProjects();
 
             if (Client == null)
             {
                 return NotFound();
             }
+
+            Projects = LoadProjects();
+
             return Page();
         }
     }

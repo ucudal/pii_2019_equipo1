@@ -26,29 +26,43 @@ namespace Linked.Pages.AvailableProjects
             _context = context;
         }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            string userId = User.Identity.Name;
-            currentUser = _context.Technician.FirstOrDefault(x => x.Email == userId);
+            try {
+                string userId = User.Identity.Name; // Gets the current logged email
+                currentUser = _context.Technician.FirstOrDefault(x => x.Email == userId); // Gets from context the Client with that email
+            } catch (Exception e) {
+                Console.WriteLine("Something went wrong getting the logged user: " + e);
+                return RedirectToPage("https://localhost:5001/");
+            }
+
+            if (currentUser == null){return RedirectToPage("https://localhost:5001/");}
+
             Specialty = currentUser.Specialty;
+
             Requirements = await _context.Requirement
                 .Where(r => r.Specialty == currentUser.Specialty).Include(r => r.Project).ToListAsync();
             
-            //Change, do not show projects where the user is already employed
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             string ProjectID = Request.Form["ProjectID"];
-            string userId = User.Identity.Name;
-            currentUser = _context.Technician.FirstOrDefault(x => x.Email == userId);
+            string userId = User.Identity.Name; // Gets the current logged email
+            currentUser = _context.Technician.FirstOrDefault(x => x.Email == userId); // Gets from context the Client with that email
 
             Interest newInterest = new Interest();
             newInterest.ProjectID = ProjectID;
             newInterest.TechnicianID = currentUser.TechnicianID;
-            _context.Interest.Add(newInterest);
-            await _context.SaveChangesAsync();
-            //catch you have already showed interest in this project
+            
+            try{
+                _context.Interest.Add(newInterest);
+                await _context.SaveChangesAsync();
+            } catch (Exception e) {
+                Console.WriteLine("The user is already interested in this project: "+e);
+            }
+
             return RedirectToPage("./MyProjects");
         }
     }

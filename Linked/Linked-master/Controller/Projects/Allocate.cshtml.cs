@@ -26,8 +26,10 @@ namespace Linked.Pages.Projects{
         public IList<Technician> InterestedTechnicians {get;set;}
         public IList<Technician> CurrentTechnicians {get;set;}
         
-        public async Task OnGetAsync(string id){
+        public async Task<IActionResult> OnGetAsync(string id){
+            if (id == null){ return NotFound(); }
             Project = await _context.Project.FindAsync(id);
+            if (Project == null){ return NotFound(); }
 
             List<Technician> curTec = new List<Technician>();
             foreach(Employ e in _context.Employ.Where( emp => emp.ProjectID == Project.ProjectID)){
@@ -35,68 +37,78 @@ namespace Linked.Pages.Projects{
             }
 
             CurrentTechnicians = curTec;
+
             Technicians = LoadTechnicians();
             TechniciansAlternativos = LoadTechniciansAlternativos();
             InterestedTechnicians = LoadInterestedTechnicians();
+            
+            return Page();
         }
 
         public IList<Technician> LoadTechnicians(){
             List<Technician> reqTec = new List<Technician>();
-            foreach(Requirement required in _context.Requirement.Where(i => i.ProjectID == Project.ProjectID)){
-                foreach(Technician posTec in _context.Technician.Where(t => t.Specialty == required.Specialty)){
-                    if(posTec.Level == required.Level && !CurrentTechnicians.Contains(posTec)){
-                        reqTec.Add(posTec);
+            try{
+                foreach(Requirement required in _context.Requirement.Where(i => i.ProjectID == Project.ProjectID)){
+                    foreach(Technician posTec in _context.Technician.Where(t => t.Specialty == required.Specialty)){
+                        if(posTec.Level == required.Level && !CurrentTechnicians.Contains(posTec)){
+                            reqTec.Add(posTec);
+                        }
                     }
                 }
+            } catch (Exception e) {
+                Console.WriteLine("Exception ocurred while getting the required technicians: "+e);
             }
             return reqTec;
         }
         
         public IList<Technician> LoadTechniciansAlternativos(){
             List<Technician> altTec = new List<Technician>();
-            foreach(Requirement required in _context.Requirement.Where(i => i.ProjectID == Project.ProjectID)){
-                foreach(Technician posTec in _context.Technician.Where(t => t.Specialty == required.Specialty)){
-                    if(posTec.Level != required.Level && !CurrentTechnicians.Contains(posTec)){
-                        altTec.Add(posTec);
+            try{
+                foreach(Requirement required in _context.Requirement.Where(i => i.ProjectID == Project.ProjectID)){
+                    foreach(Technician posTec in _context.Technician.Where(t => t.Specialty == required.Specialty)){
+                        if(posTec.Level != required.Level && !CurrentTechnicians.Contains(posTec)){
+                            altTec.Add(posTec);
+                        }
                     }
                 }
+            } catch (Exception e) {
+                Console.WriteLine("Exception ocurred while getting the alternative technicians: "+e);
             }
             return altTec;
         }
 
         public IList<Technician> LoadInterestedTechnicians(){
             IList<Technician> intTec = new List<Technician>();
-            foreach(Interest interest in _context.Interest.Where(i => i.ProjectID == Project.ProjectID)){
-                foreach (Technician posTec in _context.Technician.Where(t => t.TechnicianID == interest.TechnicianID)){
-                    if(!CurrentTechnicians.Contains(posTec)){
-                        intTec.Add(posTec);
+            try{
+                foreach(Interest interest in _context.Interest.Where(i => i.ProjectID == Project.ProjectID)){
+                    foreach (Technician posTec in _context.Technician.Where(t => t.TechnicianID == interest.TechnicianID)){
+                        if(!CurrentTechnicians.Contains(posTec)){
+                            intTec.Add(posTec);
+                        }
                     }
                 }
+            } catch (Exception e) {
+                Console.WriteLine("Exception ocurred while getting the interested technicians: "+e);
             }
             return intTec;
         }
 
         public async Task<IActionResult> OnPostAsync(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            if (id == null){return NotFound();}
             Project = await _context.Project.FindAsync(id);
-            string TechId = Request.Form["TechnicianID"];
-            //string ParsedTechId = string.Parse(TechId);
-            string ParsedTechId = TechId;
-            TechnicianSelected = await _context.Technician.FindAsync(ParsedTechId);
+            if (Project == null){return NotFound();}
 
-            if (Project != null)
-            {
-                Employ NewEmploy = new Employ();
-                NewEmploy.TechnicianID = ParsedTechId;
-                NewEmploy.ProjectID = Project.ProjectID;
-                _context.Employ.Add(NewEmploy);
-                await _context.SaveChangesAsync();
-            }
+            string ParsedTechId = Request.Form["TechnicianID"];
+            if (ParsedTechId == null){return NotFound();}
+            TechnicianSelected = await _context.Technician.FindAsync(ParsedTechId);
+            if (TechnicianSelected == null){return NotFound();}
+
+            Employ NewEmploy = new Employ();
+            NewEmploy.TechnicianID = ParsedTechId;
+            NewEmploy.ProjectID = Project.ProjectID;
+            _context.Employ.Add(NewEmploy);
+            await _context.SaveChangesAsync();
             
             if(User.IsInRole(IdentityData.NonAdminRoleNames[0])){
                 return RedirectToPage("../ClientLayout/MyProjects");
