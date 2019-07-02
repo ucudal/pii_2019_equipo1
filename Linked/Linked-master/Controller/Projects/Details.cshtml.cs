@@ -25,34 +25,30 @@ namespace Linked.Pages.Projects
         public IEnumerable<Requirement> Requirements {get;set;}
 
         public IEnumerable<Technician> LoadTechnicians(){
-            var db = _context;
-            IEnumerable<Technician> e = Enumerable.Empty<Technician>();
+            IEnumerable<Technician> tecEmployed = Enumerable.Empty<Technician>();
             try {
-                foreach(Employ emp in db.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
-                    e = e.Concat(db.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
+                foreach(Employ emp in _context.Employ.Where(p=> p.ProjectID == Project.ProjectID)){
+                    tecEmployed = tecEmployed.Concat(_context.Technician.Where(t => t.TechnicianID == emp.TechnicianID).AsEnumerable());
                 }
-           }catch{}
-            return e;
+           } catch (Exception e) {
+                Console.WriteLine("Exception ocurred while getting the employed technicians: "+e);
+            }
+            return tecEmployed;
         }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null){return NotFound();}
 
             Project = await _context.Project
                 .Include(p => p.Client).FirstOrDefaultAsync(m => m.ProjectID == id);
+                
+            if (Project == null){return NotFound();}
 
             Requirements = await _context.Requirement.Where(m => m.ProjectID == id).ToListAsync();
 
             Technicians = LoadTechnicians();
 
-            if (Project == null)
-            {
-                return NotFound();
-            }
             return Page();
         }
     }

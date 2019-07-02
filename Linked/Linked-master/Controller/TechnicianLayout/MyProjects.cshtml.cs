@@ -1,13 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Linked.Areas.Identity.Data;
-using System.Security.Principal;
 using Linked.Models;
 
 namespace Linked.Pages.MyProjects
@@ -26,21 +20,27 @@ namespace Linked.Pages.MyProjects
         public IEnumerable<Project> Projects {get;set;}
 
         public IEnumerable<Project> LoadProjects(string id){
-            var db = _context;
-            IEnumerable<Project> e = Enumerable.Empty<Project>();
+            IEnumerable<Project> projects = Enumerable.Empty<Project>();
             try {
-                foreach(Employ emp in db.Employ.Where(p=> p.TechnicianID == id)){
-                    e = e.Concat(db.Project.Where(t => t.ProjectID == emp.ProjectID).AsEnumerable());
+                foreach(Employ emp in _context.Employ.Where(p=> p.TechnicianID == id)){
+                    projects = projects.Concat(_context.Project.Where(t => t.ProjectID == emp.ProjectID).AsEnumerable());
                 }
-           }catch{}
-            return e;
+            } catch (Exception e) {
+                Console.WriteLine("Exception ocurred while getting the projects: "+e);
+            }
+            return projects;
         }
 
-        public async Task OnGetAsync()
-        {
-            string userId = User.Identity.Name;
-            currentUser = _context.Technician.FirstOrDefault(x => x.Email == userId);
+        public void OnGet(){
             
+            try {
+                string userId = User.Identity.Name; // Gets the current logged email
+                currentUser = _context.Technician.FirstOrDefault(x => x.Email == userId); // Gets from context the Client with that email
+            } catch (Exception e) {
+                Console.WriteLine("Something went wrong getting the logged user: " + e);
+                RedirectToPage("https://localhost:5001/");
+            }
+
             Projects = LoadProjects(currentUser.TechnicianID);
         }
     }

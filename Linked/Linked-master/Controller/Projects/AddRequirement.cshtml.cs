@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Areas.Identity.Data;
 using Linked.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Linked.Pages.AddRequirement{
     public class CreateModel : PageModel{
@@ -18,33 +19,37 @@ namespace Linked.Pages.AddRequirement{
 
         [BindProperty]
         public Requirement Requirement { get; set; }
-
         public Project Project { get; set; }
 
         public List<SelectListItem> Specialties{ get; set; }
         public List<SelectListItem> Levels{ get; set; }
 
-        public async Task OnGetAsync(string id){
-            Project = _context.Project.Where(p=> p.ProjectID == id).FirstOrDefault<Project>();
+        public async Task<IActionResult> OnGetAsync(string id){
+            if (id == null){
+                return NotFound();
+            }
+
+            Project = await _context.Project.FirstOrDefaultAsync(m => m.ProjectID == id);
+
+            if (Project == null)
+            {
+                return NotFound();
+            }
 
             Specialties = Enum.GetValues(typeof(Specialty)).Cast<Specialty>().ToList()
-            .Select(spy => new SelectListItem
-            {
-                Value = spy.ToString(),
-                Text = spy.ToString()
-            })
-            .ToList();
+            .Select(spy => new SelectListItem{ Value = spy.ToString(), Text = spy.ToString() }).ToList();
 
             Levels = Enum.GetValues(typeof(Level)).Cast<Level>().ToList()
-            .Select(lvl => new SelectListItem
-            {
-                Value = lvl.ToString(),
-                Text = lvl.ToString()
-            })
-            .ToList();
+            .Select(lvl => new SelectListItem{ Value = lvl.ToString(), Text = lvl.ToString() }).ToList();
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string id){
+            if (!ModelState.IsValid){
+                return Page();
+            }
+
             Requirement.ProjectID = id;
 
             _context.Requirement.Add(Requirement);

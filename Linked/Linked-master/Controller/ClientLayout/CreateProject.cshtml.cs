@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Linked.Models;
 
 namespace Linked.Pages.ProjectsC{
@@ -17,7 +15,6 @@ namespace Linked.Pages.ProjectsC{
 
         [BindProperty]
         public Project Project { get; set; }
-
         public Client currentUser { get; set; } // Current Client logged in the app
 
         public async Task<IActionResult> OnPostAsync(){
@@ -27,20 +24,19 @@ namespace Linked.Pages.ProjectsC{
                 currentUser = _context.Client.FirstOrDefault(x => x.Email == userId); // Gets from context the Client with that email
             } catch (Exception e) {
                 Console.WriteLine("Something went wrong getting the logged user: " + e);
-                return RedirectToPage("./MyProjects");
+                return RedirectToPage("https://localhost:5001/");
             }
 
             Project.ClientID = currentUser.ClientID; // Adds the clientID to the Project
 
-            try {
-                _context.Project.Add(Project);
-                await _context.SaveChangesAsync();
-            } catch (Exception e) {
-                Console.WriteLine("Something went wrong persisting the project in the db: " + e);
+            if (!ModelState.IsValid){
+                return RedirectToPage("./MyProjects");
             }
+
+            _context.Project.Add(Project);
+            await _context.SaveChangesAsync();
             
             return RedirectToPage("./MyProjects");
-
         }
     }
 }
