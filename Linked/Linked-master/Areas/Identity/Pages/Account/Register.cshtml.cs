@@ -12,6 +12,38 @@ using Microsoft.Extensions.Logging;
 using Linked.Areas.Identity.Data;
 using Linked.Models;
 
+  /// <summary>
+  /// Los controladores son los encargados de traducir las entradas de los usuarios en acciones a ser llevadas a cabo por el modelo.
+  /// Es decir, maneja las interacciones con los usuarios y provee un mecanismo por el cual se produce un cambio en el estado del modelo.
+  /// Uno de los propósitos en MVC es separar el modelo de las vistas a modo de que cambios en las vistas no se tengan que verse reflejadas
+  /// en el modelo y viceversa, en otras palabras, modularizar la aplicación.
+  ///
+  /// Esta clase hereda de PageModel de modo que extiende sus propiedades y comportamiento sin necesidad de volver a implementarlo.
+  /// Por lo tanto, la clase RegisterModel tiene una clasificación jerárquica por debajo de PageModel.
+  ///
+  ///Patrones:
+  /// Expert / Creator - Debido a que esta clase es experta en la información necesaria para crear un Cliente es que se le asigna dicha 
+  /// responsabilidad. De este modo no solo se mantiene la cohesión alta sino que también se mantiene a la información encapsulada. 
+  /// El patrón Creator es quien nos ayudó a identificar el hecho de que la responsabilidad de crear los Clients caiga en esta clase.
+  ///
+  /// Colaboradores: Client, SignInManager, UserManager, ILogger, IEmailSender y Linked.Areas.Identity.Data.IdentityContext  
+  ///
+  /// Principios:
+  /// SRP- La única responsabilidad que tiene esta clase es de crear Clients, dicha responsabilidad se le es asignada a través de los 
+  /// patrones Expert y Creator.
+  ///
+  /// ISP: RegisterModel implementa todos los tipos (IAsyncPageFilter, IFilterMetadata, IPageFilter) expresados explícitamente en las 
+  /// interfaces implementadas por el supertipo PageModel. Por esta razón RegisterModel no se ve forzada a implementar tipos que no 
+  /// utiliza, ya que las interfaces implementadas aseguran el funcionamiento del controlador.
+  ///
+  /// OCP - PageModel está abierta a la extensión y cerrada a la modificación porque pudimos extenderla con RegisterModel sin necesidad de
+  /// modificarla.
+  /// LSP -  PageModel se puede sustituir por su subtipo RegisterModel, ya que RegisterModel extiende el comportamiento de PageModel, 
+  /// respetando los tipos en PageModel. var result = await _userManager.CreateAsync(user, Input.Password); En el controlador Register 
+  /// se ve un uso directo de LSP, en que para el método CreateAsync, que toma como parámetro un objeto del tipo, ApplicationUser, se 
+  /// utilizan instancias de Client o Technician que son subtipos de ApplicationUser.
+  /// </summary>
+   
 namespace Linked.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]

@@ -9,6 +9,39 @@ using Linked.Models;
 using Microsoft.EntityFrameworkCore;
 using Linked.Areas.Identity.Data;
 
+  /// <summary>
+  /// Los controladores son los encargados de traducir las entradas de los usuarios en acciones a ser llevadas a cabo por el modelo.
+  /// Es decir, maneja las interacciones con los usuarios y provee un mecanismo por el cual se produce un cambio en el estado del modelo.
+  /// Uno de los propósitos en MVC es separar el modelo de las vistas a modo de que cambios en las vistas no se tengan que verse reflejadas
+  /// en el modelo y viceversa, en otras palabras, modularizar la aplicación.
+  ///
+  /// Esta clase hereda de PageModel de modo que extiende sus propiedades y comportamiento sin necesidad de volver a implementarlo.
+  /// Por lo tanto, la clase AllocateModel tiene una clasificación jerárquica por debajo de PageModel.
+  ///
+  /// Su propósito es brindarle la posibilidad a un cliente de asignar un técnico a un proyecto
+  ///
+  /// Colaboradores: Project, Technician, Specialty, Level, Employ y Linked.Areas.Identity.Data.IdentityContext  
+  ///
+  /// Expert / Creator - Sobre esta clase sobrecae la responsabilidad de crear los objetos de Employ ya que conoce toda la información 
+  /// necesaria para hacerlo logrando de este modo una mayor cohesión.
+  ///
+  /// DRY - Esta clase es la única capaz de crear relaciones entre los técnicos y los proyectos a través de los nexos Employ
+  ///
+  /// Principios:
+  /// SRP- La única responsabilidad de esta clase es crear instancias de Employ.
+  ///
+  /// ISP: AllocateModel implementa todos los tipos (IAsyncPageFilter, IFilterMetadata, IPageFilter) expresados explícitamente en las 
+  /// interfaces implementadas por el supertipo PageModel. Por esta razón AllocateModel no se ve forzada a implementar tipos que no utiliza. 
+  /// Las interfaces implementadas aseguran el funcionamiento del controlador.
+  ///
+  /// OCP - PageModel está abierta a la extensión y cerrada a la modificación porque pudimos extenderla con AllocateModel sin necesidad 
+  /// de modificarla.
+  ///   
+  /// LSP -  PageModel se puede sustituir por su subtipo AllocateModel, ya que extiende el comportamiento de PageModel, respetando los
+  /// tipos en PageModel, sin modificar su comportamiento. User.IsInRole(IdentityData.NonAdminRoleNames[0]) aca se puede ver un ejemplo 
+  /// donde ya sea un Client o un ApplicationUser el tipo del usuario logeado, la expresión funciona igual.
+  /// </summary>
+
 namespace Linked.Pages.Projects{
     public class AllocateModel : PageModel{
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;

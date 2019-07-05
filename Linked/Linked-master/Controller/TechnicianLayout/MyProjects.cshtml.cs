@@ -4,6 +4,11 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Linked.Models;
 
+  /// <summary>
+  /// Los patrones y principios que son aplicados en esta clase son explicitados y explicados en las clases de Project ya que estas 
+  /// se pueden considerar semejantes en su diseño.
+  /// </summary>
+  
 namespace Linked.Pages.MyProjects
 {
     public class IndexModel : PageModel
