@@ -160,5 +160,19 @@ namespace Linked.Areas.Identity.Data
             var result = userManager.CreateAsync(user, contraseña);
             
         }
+        public static List<Client> GetSeedingClients()
+        {   
+            List<Client> clientes = new List<Client>();
+
+                for (int i = 0; i < TechnicianData.TechnicianNames.Count()-1; i++)
+            {   
+                Client cliente = new Client();
+                cliente.Name=ClientData.ClientNames[i];
+                cliente.DOB=ClientData.fecha;
+                cliente.Email=ClientData.ClientMail[i];
+                clientes.Add(cliente);
+            }
+            return clientes;
+        }
     }
 }
