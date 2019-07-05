@@ -19,9 +19,8 @@ using System.ComponentModel;
    /// SRP- La única razón de cambio para esta clase son cambios en la representación en el vínculo entre Project
    ///  y los requerimientos mencionados anteriormente. Un ejemplo
    /// para modificar esta clase puede ser agregar más información a la representación del vínculo.
-   ///
    /// </summary>
-   /// 
+
 namespace Linked.Models{
     public class Requirement{
         public string RequirementID { get; set; }
