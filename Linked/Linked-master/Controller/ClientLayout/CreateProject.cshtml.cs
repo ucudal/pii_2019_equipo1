@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Linked.Models;
 
+    /// <summary>
+
+    /// </summary>
 namespace Linked.Pages.ProjectsC{
     public class CreateModel : PageModel{
         private readonly Linked.Areas.Identity.Data.IdentityContext _context;
