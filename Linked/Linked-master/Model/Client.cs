@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using Linked.Areas.Identity.Data;
     
     /// <summary>
-    /// Client es un subtipo de Applicationuser.
+    /// El modelo de esta aplicación representa datos con respecto a distintos proyectos y sus participantes.
+    /// Esto es una aproximación virtual de los participantes y elementos asociados a un proyecto.
+    /// Este modelo es la pieza que representa el estado y el comportamiento de bajo nivel (getters y setters) de la aplicaciòn.
+    /// El modelo no tiene conocimiento específico sobre ningún controlador o vista.
     /// 
-    /// Su propósito es encapsular la información de un usuario que es un cliente.
+    /// Client es un subtipo de Applicationuser.
+    /// Client hereda las propiedades y el comportamiento de ApplicationUser. Permite crear tipos especialidos de objetos preexistentes.
+    /// El principal propósito en la herencia del tipo ApplicationUser por parte de Technician y Client, es jerarquizar la clasificación de las clases ApplicationUser,
+    /// Client y Technician.
+    /// 
+    /// Su propósito es contener la información de un usuario que es un cliente.
     ///
     /// Colaboradores: Project. Cada instancia de Client esta compuesta por una lista de Project.
     ///
