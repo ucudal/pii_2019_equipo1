@@ -104,17 +104,21 @@ namespace Linked.Pages.Projects{
             TechnicianSelected = await _context.Technician.FindAsync(ParsedTechId);
             if (TechnicianSelected == null){return NotFound();}
 
-            Employ NewEmploy = new Employ();
-            NewEmploy.TechnicianID = ParsedTechId;
-            NewEmploy.ProjectID = Project.ProjectID;
-            _context.Employ.Add(NewEmploy);
-            await _context.SaveChangesAsync();
+            AllocateTechnician(id, ParsedTechId);
             
             if(User.IsInRole(IdentityData.NonAdminRoleNames[0])){
                 return RedirectToPage("../ClientLayout/MyProjects");
             }
 
             return RedirectToPage("./Index");
+        }
+        public async void AllocateTechnician(string id, string techid)
+        {
+            Employ NewEmploy = new Employ();
+            NewEmploy.TechnicianID = techid;
+            NewEmploy.ProjectID = id;
+            _context.Employ.Add(NewEmploy);
+            await _context.SaveChangesAsync();
         }
     }
 }       
