@@ -14,6 +14,10 @@ using Linked.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 
+  /// <summary>
+  /// Los patrones y principios que son aplicados en esta clase son explicitados y explicados en las clase Register ya que estas 
+  /// se pueden considerar semejantes en su diseño.
+  /// </summary>
 
 namespace Linked.Areas.Identity.Pages.Account
 {
@@ -95,8 +99,6 @@ namespace Linked.Areas.Identity.Pages.Account
             })
             .ToList();
 
-            ViewData["Specialities"] = Specialties;
-
             Levels = Enum.GetValues(typeof(Level)).Cast<Level>().ToList()
             .Select(lvl => new SelectListItem
             {
@@ -105,7 +107,6 @@ namespace Linked.Areas.Identity.Pages.Account
             })
             .ToList();
 
-            ViewData["Specialities"] = Specialties;
 
         }
 
